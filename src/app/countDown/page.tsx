@@ -18,7 +18,7 @@ export default function Page({}: Props) {
           router.push("/quiz/seo/q1")
         }
         return () => clearInterval(interval);
-      }, [count]);
+      }, [count,router]);
 
   return (
     <div>
