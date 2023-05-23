@@ -9,7 +9,7 @@ export default function Page({}: Props) {
     const router = useRouter();
 
     useEffect(() => {
-        const interval = setInterval(() => {
+        const interval = setTimeout(() => {
           setCount((prev) => prev - 1);
         }, 1000);
         if (count === 0) {
