@@ -1,5 +1,5 @@
 export const creatUserData = ()=>{
-    sessionStorage.setItem('defaulScore','10');
+    sessionStorage.setItem('defaultScore','10');
     const userScore = sessionStorage.getItem('defaulScore')
     console.log(userScore)
 }
