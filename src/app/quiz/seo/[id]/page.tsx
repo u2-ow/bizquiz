@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import fetchSeoQuestion from "../../../../../utils/fetchSeoQuestion";
 import fetchSeoChoice from "../../../../../utils/fetchSeoChoice";
 import { useQuizCountDown } from "@/hooks/useQuizCountDown";
+import { usePathname,useRouter } from 'next/navigation';
 
 
 type Question = {
@@ -21,7 +22,12 @@ type Choice = {
 export default function Page() {
   const [seoQuestions,setSeoQuestions] = useState<Question[]>([])
   const [seoChoices,setSeoChoices] = useState<Choice[]>([]);
+  const [currentUrl,setCurretUrl] = useState('');
+
   const quizTimer = useQuizCountDown();
+  const pathname = usePathname();
+  const router = useRouter();
+
 
   useEffect(()=>{
   const fetchData = async () => {
@@ -33,37 +39,109 @@ export default function Page() {
     setSeoChoices(choices as Choice[])
   };
   fetchData();
-  },[])
+  setCurretUrl(pathname);
+  },[pathname])
+
 
 
   const judege = (e: { target: { innerHTML: string; }; })=>{
     console.log(seoChoices)
     const selectedText = e.target.innerHTML;
     const selectedChoices = seoChoices.find((item) => item.choice_text === selectedText);
-    if(selectedChoices?.is_correct !== true){
-      console.log('不正解')
-      console.log(sessionStorage)
+    if(selectedChoices?.is_correct === true){
+      sessionStorage.clear();
+      if(currentUrl === '/quiz/seo/q1'){
+        router.push('/quiz/seo/q2')
+        return
+      }
+      if(currentUrl === '/quiz/seo/q2'){
+        router.push('/quiz/seo/q3')
+        return
+      }
+      if(currentUrl === '/quiz/seo/q3'){
+        router.push('/quiz/seo/q4')
+        return
+      }
+      if(currentUrl === '/quiz/seo/q4'){
+        router.push('/quiz/seo/q5')
+        return
+      }
+      if(currentUrl === '/quiz/seo/q5'){
+        router.push('/quiz/seo/q6')
+        return
+      }
+      if(currentUrl === '/quiz/seo/q6'){
+        router.push('/quiz/seo/q7')
+        return
+      }
+      if(currentUrl === '/quiz/seo/q7'){
+        router.push('/quiz/seo/q8')
+        return
+      }
+      if(currentUrl === '/quiz/seo/q8'){
+        router.push('/quiz/seo/q9')
+        return
+      }
+      if(currentUrl === '/quiz/seo/q9'){
+        router.push('/quiz/seo/q10')
+        return
+      }
+      if(currentUrl === '/quiz/seo/q10'){
+        router.push('/result')
+        return
+      }
+
+
+    }else{
       const userScore = Number(sessionStorage.getItem('defaultScore') || 10);
       sessionStorage.setItem('defaultScore', String(userScore - 1));
       console.log(sessionStorage.defaultScore)
-      return
+      if(currentUrl === '/quiz/seo/q1'){
+        router.push('/quiz/seo/q2')
+        return
+      }
+      if(currentUrl === '/quiz/seo/q2'){
+        router.push('/quiz/seo/q3')
+        return
+      }
+      if(currentUrl === '/quiz/seo/q3'){
+        router.push('/quiz/seo/q4')
+        return
+      }
+      if(currentUrl === '/quiz/seo/q4'){
+        router.push('/quiz/seo/q5')
+        return
+      }
+      if(currentUrl === '/quiz/seo/q5'){
+        router.push('/quiz/seo/q6')
+        return
+      }
+      if(currentUrl === '/quiz/seo/q6'){
+        router.push('/quiz/seo/q7')
+        return
+      }
+      if(currentUrl === '/quiz/seo/q7'){
+        router.push('/quiz/seo/q8')
+        return
+      }
+      if(currentUrl === '/quiz/seo/q8'){
+        router.push('/quiz/seo/q9')
+        return
+      }
+      if(currentUrl === '/quiz/seo/q9'){
+        router.push('/quiz/seo/q10')
+        return
+      }
+      if(currentUrl === '/quiz/seo/q10'){
+        router.push('/result')
+        return
+      }
 
-    }else{
-            sessionStorage.clear();
     }
-    // else{
-    //   console.log('不正解')
-    //   const currentScore = sessionStorage.getItem('defaultScore');
-    //   const updatedScore = parseInt(currentScore, 10) - 1;
-    //   console.log(updatedScore);
-    //   sessionStorage.setItem('defaultScore', updatedScore.toString());
-    //   console.log(sessionStorage)
-    // }
   }
 
 
 
- 
   return (
     <>
     {
