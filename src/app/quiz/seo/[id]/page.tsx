@@ -6,6 +6,7 @@ import fetchSeoQuestion from "../../../../../utils/fetchSeoQuestion";
 import fetchSeoChoice from "../../../../../utils/fetchSeoChoice";
 import { useQuizCountDown } from "@/hooks/useQuizCountDown";
 import { usePathname,useRouter } from 'next/navigation';
+import Link from 'next/link'
 
 
 type Question = {
@@ -144,6 +145,9 @@ export default function Page() {
 
   return (
     <>
+    <Link href="/">
+      やめる
+    </Link>
     {
            seoQuestions.map((seoQuestion) => (
             <p key={seoQuestion.id}>
