@@ -45,7 +45,7 @@ export default function Page() {
 
 
 
-  const judege = (e: { target: { innerHTML: string; }; })=>{
+  const judege = (e)=>{
     console.log(seoChoices)
     const selectedText = e.target.innerHTML;
     const selectedChoices = seoChoices.find((item) => item.choice_text === selectedText);
@@ -145,24 +145,25 @@ export default function Page() {
 
   return (
     <>
-    <Link href="/">
-      やめる
-    </Link>
-    {
-           seoQuestions.map((seoQuestion) => (
-            <p key={seoQuestion.id}>
-              {seoQuestion.question}
-            </p>
-          ))
-    }
-       {
-           seoChoices.map((seoChoice) => (
-            <p key={seoChoice.id} onClick={judege}>
-              {seoChoice.choice_text}
-            </p>
-          ))
-    }
-          <p>{quizTimer}</p>
+    <div>
+        {
+              seoQuestions.map((seoQuestion) => (
+                <p key={seoQuestion.id}>
+                  {seoQuestion.question}
+                </p>
+              ))
+        }
+          {
+              seoChoices.map((seoChoice) => (
+                <p key={seoChoice.id} onClick={judege}>
+                  {seoChoice.choice_text}
+                </p>
+              ))
+        }
+        <p>{quizTimer}</p>
+    </div>
+
+ 
 
     </>
   )
