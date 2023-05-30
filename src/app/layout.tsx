@@ -1,7 +1,11 @@
 import './globals.css'
-import { Inter } from 'next/font/google'
+import '../styles/reset.css'
+import { DotGothic16 } from "@next/font/google";
 
-const inter = Inter({ subsets: ['latin'] })
+const DotGothic16_normal = DotGothic16({
+  weight: "400",
+  subsets: ["cyrillic"],
+});
 
 export const metadata = {
   title: 'Create Next App',
@@ -15,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={DotGothic16_normal.className}>{children}</body>
     </html>
   )
 }
