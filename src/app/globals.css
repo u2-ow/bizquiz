@@ -1,0 +1,82 @@
+:root{
+    /*colors*/
+    --yellow:#F5CE45;
+    --blue:#429AD6;
+    --red:#D73823;
+    --green:#68B04A;
+    /*text-style*/
+    --text-shadow:1px 1px 0 #000, -1px -1px 0 #000,
+    -1px 1px 0 #000, 1px -1px 0 #000,
+    0px 1px 0 #000,  0-1px 0 #000,
+    -1px 0 0 #000, 1px 0 0 #000;
+    --red-text-shadow:1px 1px 0 #CC4A19, -1px -1px 0 #CC4A19,
+    -1px 1px 0 #CC4A19, 1px -1px 0 #CC4A19,
+    0px 1px 0 #CC4A19,  0-1px 0 #CC4A19,
+    -1px 0 0 #CC4A19, 1px 0 0 #CC4A19;
+    /* text-animation */
+    --text-animation: blinking .8s ease-in-out infinite alternate;
+}
+@keyframes blinking {
+	0% {opacity: 0;}
+	100% {opacity: 1;}
+}
+body{
+    background-color: var(--yellow);
+}
+
+main{
+      max-width: 1280px;
+      margin: 150px auto; 
+       
+}
+.mode-list{
+    width: 300px;
+    margin: 16px auto auto;
+}
+.mode-list .mode-list__item{
+    font-size: 25px;
+    text-align: center;
+    text-shadow: var(--red-text-shadow);
+    color: #fff;
+    letter-spacing: 2px;
+    width: fit-content;
+    margin: 0 auto;
+}
+.mode-list .mode-list__item:hover{
+    animation: var(--text-animation);
+}
+.quit{
+    text-align: right;
+    color: #fff;
+    text-shadow: var(--text-shadow);
+}
+h1{
+    font-size: 50px;
+    text-shadow: var(--text-shadow);
+    text-align: center;
+}
+p{
+    text-align: center;
+    margin: 30px 0 ;
+    font-size: 18px;
+}
+a{
+    text-decoration: none;
+    color: unset;
+    display: block;
+}
+.text-blue{
+    color: var(--blue);
+}
+.text-yellow{
+    color: var(--yellow);
+}
+.text-red{
+    color: var(--red);
+    letter-spacing: 5px;
+    
+}
+.text-green{
+    color: var(--green);
+    letter-spacing: 5px;
+}
