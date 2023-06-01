@@ -19,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={DotGothic16_normal.className}>{children}</body>
+    <body className={DotGothic16_normal.className}>{children}</body>
     </html>
   )
 }
