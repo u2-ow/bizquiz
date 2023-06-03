@@ -6,6 +6,7 @@ import fetchSeoQuestion from "../../../../../utils/fetchSeoQuestion";
 import fetchSeoChoice from "../../../../../utils/fetchSeoChoice";
 import { useQuizCountDown } from "@/hooks/useQuizCountDown";
 import { usePathname,useRouter } from 'next/navigation';
+import Styles from '@/app/quiz/quiz.module.scss'
 import Link from 'next/link'
 
 
@@ -24,6 +25,7 @@ export default function Page() {
   const [seoQuestions,setSeoQuestions] = useState<Question[]>([])
   const [seoChoices,setSeoChoices] = useState<Choice[]>([]);
   const [currentUrl,setCurretUrl] = useState('');
+  const [apperTimer,setApperTimer] = useState(false)
 
   const quizTimer = useQuizCountDown();
   const pathname = usePathname();
@@ -39,6 +41,9 @@ export default function Page() {
     const choices = await fetchSeoChoice(questionId);
     setSeoChoices(choices as Choice[])
   };
+  setTimeout(()=>{
+    setApperTimer(true)
+  },300)
   fetchData();
   setCurretUrl(pathname);
   },[pathname])
@@ -145,22 +150,25 @@ export default function Page() {
 
   return (
     <>
-    <div>
+    <div className={Styles.quizContent}>
         {
               seoQuestions.map((seoQuestion) => (
-                <p key={seoQuestion.id}>
+                <p key={seoQuestion.id} className={Styles.question}>
                   {seoQuestion.question}
                 </p>
               ))
         }
-          {
+        <ul className={Styles.choiceList}>
+        {
               seoChoices.map((seoChoice) => (
-                <p key={seoChoice.id} onClick={judege}>
+                <li key={seoChoice.id} onClick={judege} className={Styles.choiceItem}>
                   {seoChoice.choice_text}
-                </p>
+                </li>
               ))
-        }
-        <p>{quizTimer}</p>
+          }
+        </ul>
+
+        {apperTimer &&  <p className={Styles.count}>{quizTimer}</p>}
     </div>
 
  
