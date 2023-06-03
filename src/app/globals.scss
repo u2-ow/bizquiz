@@ -1,0 +1,35 @@
+@use  '@/styles/variables.scss' as v;
+body{
+    background-color: v.$main_yellow;
+}
+
+main{
+      max-width: 1280px;
+      margin: 150px auto; 
+       
+}
+
+
+.quit{
+    text-align: right;
+    color: #fff;
+    text-shadow: v.$black-text-shadow;
+    position: relative;
+    top: 10px;
+    display: block;
+    right: 10px;
+    &:hover{
+        text-shadow: v.$red-text-shadow;
+    }
+}
+h1{
+    font-size: 80px;
+    text-shadow: var(--text-shadow);
+    text-align: center;
+}
+
+a{
+    text-decoration: none;
+    color: unset;
+    display: block;
+}
