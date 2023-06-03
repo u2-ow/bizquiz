@@ -1,6 +1,7 @@
-import './globals.css'
-import '../styles/reset.css'
+import '@/app/globals.scss'
+import '@/styles/reset.scss'
 import { DotGothic16 } from "@next/font/google";
+import Link from "next/link";
 
 const DotGothic16_normal = DotGothic16({
   weight: "400",
@@ -19,7 +20,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-    <body className={DotGothic16_normal.className}>{children}</body>
+    <body className={DotGothic16_normal.className}>
+    <header>
+      <Link href="/" className="quit">やめる</Link>
+    </header>
+      {children}
+      </body>
     </html>
   )
 }

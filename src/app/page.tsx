@@ -1,6 +1,9 @@
 'use client'
-import Link from "next/link";
+
 import { creatUserData } from "../../utils/creatUserData"
+import '@/app/globals.scss'
+import Link from "next/link";
+import Styles from "@/app/app.module.scss"
 
 
 
@@ -8,23 +11,22 @@ export default function Home() {
  creatUserData();
   return (
     <>
-    <header>
-    <Link href="/" className="quit">やめる</Link>
-    </header>
-    <main >
+ 
+    <main>
     <h1>
-      <span className="text-blue">b</span>
-      <span className="text-yellow">i</span>
-      <span className="text-red">z</span>
-      <span className="text-green">q</span>
-      <span className="text-yellow">u</span>
-      <span className="text-blue">i</span>
-      <span className="text-red">z</span>
+
+      <span className={Styles.textBlue}>b</span>
+      <span className={Styles.textYellow}>i</span>
+      <span className={Styles.textRed}>z</span>
+      <span className={Styles.textGreen}>q</span>
+      <span className={Styles.textYellow}>u</span>
+      <span className={Styles.textBlue}>i</span>
+      <span className={Styles.textRed}>z</span>
     </h1>
-    <p>クイズのカテゴリを選択してください。</p>
-        <ul className="mode-list">
-          <li className="mode-list__item"><Link href='/countDown'>SEO</Link></li>
-          <li className="mode-list__item">Marketing</li>
+    <p className={Styles.text}>クイズのカテゴリを選択してください。</p>
+        <ul className={Styles.modeList}>
+          <li className={Styles.modeItem}><Link href='/countDown'>SEO</Link></li>
+          <li className={Styles.modeItem}>Marketing</li>
         </ul>
     </main>
 

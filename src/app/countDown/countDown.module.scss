@@ -1,8 +1,10 @@
 .count{
     font-size: 100px;
-    margin-top: 250px;
+    position: relative;
+    top:250px;
     text-shadow: 1px 1px 0 #fff, -1px -1px 0 #fff,
     -1px 1px 0 #fff, 1px -1px 0 #fff,
     0px 1px 0 #fff,  0-1px 0 #fff,
     -1px 0 0 #fff, 1px 0 0 #fff;;
+    text-align: center;
 }
