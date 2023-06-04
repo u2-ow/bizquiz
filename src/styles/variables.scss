@@ -13,5 +13,11 @@ $red-text-shadow:1px 1px 0 #D73823, -1px -1px 0 #D73823,
 -1px 1px 0 #D73823, 1px -1px 0 #D73823,
 0px 1px 0 #D73823,  0-1px 0 #D73823,
 -1px 0 0 #D73823, 1px 0 0 #D73823;
+$white-text-shadow:1px 1px 0 #ffffff, -1px -1px 0 #ffffff,
+-1px 1px 0 #ffffff, 1px -1px 0 #ffffff,
+0px 1px 0 #ffffff,  0-1px 0 #ffffff,
+-1px 0 0 #ffffff, 1px 0 0 #ffffff;
+$count-down-white-shadow:4px 1px 0 #ffffff, -4px 0px 0 #ffffff, 0px 3px 0 #ffffff, 0px -4px 0 #ffffff, 0px -1px 0 #ffffff, -1px 0 #ffffff, -1px 0 0 #ffffff, 1px 0 0 #ffffff;
 $text-animation:blinking .8s ease-in-out infinite alternate;
+$result-animation:blinking .5s ease-in-out infinite alternate;
 
