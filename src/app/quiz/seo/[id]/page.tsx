@@ -7,7 +7,7 @@ import fetchSeoChoice from "../../../../../utils/fetchSeoChoice";
 import { useQuizCountDown } from "@/hooks/useQuizCountDown";
 import { usePathname,useRouter } from 'next/navigation';
 import Styles from '@/app/quiz/quiz.module.scss'
-import Link from 'next/link'
+
 
 
 type Question = {
@@ -43,10 +43,50 @@ export default function Page() {
   };
   setTimeout(()=>{
     setApperTimer(true)
-  },300)
+  },100)
   fetchData();
   setCurretUrl(pathname);
-  },[pathname])
+  if(quizTimer === 0 && currentUrl === '/quiz/seo/q1'){
+    router.push('/quiz/seo/q2')
+    return
+  }
+  if(quizTimer === 0 && currentUrl === '/quiz/seo/q2'){
+    router.push('/quiz/seo/q3')
+    return
+  }
+  if(quizTimer === 0 && currentUrl === '/quiz/seo/q3'){
+    router.push('/quiz/seo/q4')
+    return
+  }
+  if(quizTimer === 0 && currentUrl === '/quiz/seo/q4'){
+    router.push('/quiz/seo/q5')
+    return
+  }
+  if(quizTimer === 0 && currentUrl === '/quiz/seo/q5'){
+    router.push('/quiz/seo/q6')
+    return
+  }
+  if(quizTimer === 0 && currentUrl === '/quiz/seo/q6'){
+    router.push('/quiz/seo/q7')
+    return
+  }
+  if(quizTimer === 0 && currentUrl === '/quiz/seo/q7'){
+    router.push('/quiz/seo/q8')
+    return
+  }
+  if(quizTimer === 0 && currentUrl === '/quiz/seo/q8'){
+    router.push('/quiz/seo/q9')
+    return
+  }
+  if(quizTimer === 0 && currentUrl === '/quiz/seo/q9'){
+    router.push('/quiz/seo/q10')
+    return
+  }
+  if(currentUrl === '/quiz/seo/q10'){
+    router.push('/result')
+    return
+  }
+  },[pathname,router,currentUrl,quizTimer])
 
 
 
@@ -150,7 +190,9 @@ export default function Page() {
 
   return (
     <>
+        {apperTimer &&  <p className={Styles.questionCount}>{quizTimer}</p>}
     <div className={Styles.quizContent}>
+
         {
               seoQuestions.map((seoQuestion) => (
                 <p key={seoQuestion.id} className={Styles.question}>
@@ -168,7 +210,7 @@ export default function Page() {
           }
         </ul>
 
-        {apperTimer &&  <p className={Styles.count}>{quizTimer}</p>}
+
     </div>
 
  
