@@ -22,7 +22,7 @@ export default function RootLayout({
     <html lang="en">
     <body className={DotGothic16_normal.className}>
     <header>
-      <Link href="/" className="quit">やめる</Link>
+      <Link href="/" className="quit">もどる</Link>
     </header>
       {children}
       </body>
