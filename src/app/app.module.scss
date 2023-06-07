@@ -1,38 +1,59 @@
 @use  '@/styles/variables.scss' as v;
-.textBlue{
-    color: v.$main_blue;
-    text-shadow: v.$black-text-shadow;
+.appName{
+    font-size: 80px;
+    text-shadow: var(--text-shadow);
+    text-align: center;
+    @include v.mq(w320){
+        font-size: 70px;
+    }
+
+    .textBlue{
+        color: v.$main_blue;
+        text-shadow: v.$black-text-shadow;
+    }
+    .textRed{
+        color: v.$main_red;
+        text-shadow: v.$black-text-shadow;
+    }
+    .textYellow{
+        color: v.$main_yellow;
+        text-shadow: v.$black-text-shadow;
+    }
+    .textGreen{
+        color: v.$main_green;
+        text-shadow: v.$black-text-shadow;
+        margin: 0 10px;
+    }
 }
-.textRed{
-    color: v.$main_red;
-    text-shadow: v.$black-text-shadow;
-}
-.textYellow{
-    color: v.$main_yellow;
-    text-shadow: v.$black-text-shadow;
-}
-.textGreen{
-    color: v.$main_green;
-    text-shadow: v.$black-text-shadow;
-    margin: 0 10px;
-}
+
 .text{
     text-align: center;
     margin-top: 60px;
+    @include v.mq(w320){
+        margin-top: 35px;
+    }
 }
 .modeList{
-    width: 300px;
+    max-width: 300px;
     margin: 16px auto auto;
     .modeItem{
         font-size: 25px;
         text-align: center;
         text-shadow: v.$red-text-shadow;
-        color: #fff;
         letter-spacing: 2px;
         width: fit-content;
         margin: 0 auto;
+        @include v.mq(w320){
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
         &:hover{
             animation: v.$text-animation;
+        }
+        .modeLink{
+            display: block;
+            text-decoration: none;
+            color: #fff;
         }
     }
 }

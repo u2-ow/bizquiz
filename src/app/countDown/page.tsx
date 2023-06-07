@@ -24,8 +24,8 @@ export default function Page({}: Props) {
       }, [count,router]);
 
   return (
-    <div>
+
         <p className={Styles.count} >{count === 0 ? "START" : count }</p>
-    </div>
+
   )
 }

@@ -43,51 +43,58 @@ export default function Page() {
   };
   setTimeout(()=>{
     setApperTimer(true)
-  },100)
+  },150)
   fetchData();
   setCurretUrl(pathname);
-  if(quizTimer === 0 && currentUrl === '/quiz/seo/q1'){
-    router.push('/quiz/seo/q2')
-    return
-  }
-  if(quizTimer === 0 && currentUrl === '/quiz/seo/q2'){
-    router.push('/quiz/seo/q3')
-    return
-  }
-  if(quizTimer === 0 && currentUrl === '/quiz/seo/q3'){
-    router.push('/quiz/seo/q4')
-    return
-  }
-  if(quizTimer === 0 && currentUrl === '/quiz/seo/q4'){
-    router.push('/quiz/seo/q5')
-    return
-  }
-  if(quizTimer === 0 && currentUrl === '/quiz/seo/q5'){
-    router.push('/quiz/seo/q6')
-    return
-  }
-  if(quizTimer === 0 && currentUrl === '/quiz/seo/q6'){
-    router.push('/quiz/seo/q7')
-    return
-  }
-  if(quizTimer === 0 && currentUrl === '/quiz/seo/q7'){
-    router.push('/quiz/seo/q8')
-    return
-  }
-  if(quizTimer === 0 && currentUrl === '/quiz/seo/q8'){
-    router.push('/quiz/seo/q9')
-    return
-  }
-  if(quizTimer === 0 && currentUrl === '/quiz/seo/q9'){
-    router.push('/quiz/seo/q10')
-    return
-  }
-  if(currentUrl === '/quiz/seo/q10'){
-    router.push('/result')
-    return
-  }
-  },[pathname,router,currentUrl,quizTimer])
+  },[])
 
+  useEffect(()=>{
+
+    setTimeout(()=>{
+      setApperTimer(true)
+    },100)
+    setCurretUrl(pathname);
+    if(quizTimer === 0 && currentUrl === '/quiz/seo/q1'){
+      router.push('/quiz/seo/q2')
+      return
+    }
+    if(quizTimer === 0 && currentUrl === '/quiz/seo/q2'){
+      router.push('/quiz/seo/q3')
+      return
+    }
+    if(quizTimer === 0 && currentUrl === '/quiz/seo/q3'){
+      router.push('/quiz/seo/q4')
+      return
+    }
+    if(quizTimer === 0 && currentUrl === '/quiz/seo/q4'){
+      router.push('/quiz/seo/q5')
+      return
+    }
+    if(quizTimer === 0 && currentUrl === '/quiz/seo/q5'){
+      router.push('/quiz/seo/q6')
+      return
+    }
+    if(quizTimer === 0 && currentUrl === '/quiz/seo/q6'){
+      router.push('/quiz/seo/q7')
+      return
+    }
+    if(quizTimer === 0 && currentUrl === '/quiz/seo/q7'){
+      router.push('/quiz/seo/q8')
+      return
+    }
+    if(quizTimer === 0 && currentUrl === '/quiz/seo/q8'){
+      router.push('/quiz/seo/q9')
+      return
+    }
+    if(quizTimer === 0 && currentUrl === '/quiz/seo/q9'){
+      router.push('/quiz/seo/q10')
+      return
+    }
+    if(currentUrl === '/quiz/seo/q10'){
+      router.push('/result')
+      return
+    }
+  },[pathname,router,currentUrl,quizTimer])
 
 
   const judege = (e)=>{
@@ -190,29 +197,31 @@ export default function Page() {
 
   return (
     <>
+    <div className="mainInner">
         {apperTimer &&  <p className={Styles.questionCount}>{quizTimer}</p>}
-    <div className={Styles.quizContent}>
+        <div className={Styles.quizContent}>
 
-        {
-              seoQuestions.map((seoQuestion) => (
-                <p key={seoQuestion.id} className={Styles.question}>
-                  {seoQuestion.question}
-                </p>
-              ))
-        }
-        <ul className={Styles.choiceList}>
-        {
-              seoChoices.map((seoChoice) => (
-                <li key={seoChoice.id} onClick={judege} className={Styles.choiceItem}>
-                  {seoChoice.choice_text}
-                </li>
-              ))
-          }
-        </ul>
+            {
+                  seoQuestions.map((seoQuestion) => (
+                    <p key={seoQuestion.id} className={Styles.question}>
+                      {seoQuestion.question}
+                    </p>
+                  ))
+            }
+            <ul className={Styles.choiceList}>
+            {
+                  seoChoices.map((seoChoice) => (
+                    <li key={seoChoice.id} onClick={judege} className={Styles.choiceItem}>
+                      {seoChoice.choice_text}
+                    </li>
+                  ))
+              }
+            </ul>
 
+
+        </div>
 
     </div>
-
  
 
     </>

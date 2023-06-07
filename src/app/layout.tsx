@@ -21,10 +21,13 @@ export default function RootLayout({
   return (
     <html lang="en">
     <body className={DotGothic16_normal.className}>
-    <header>
-      <Link href="/" className="quit">もどる</Link>
-    </header>
+      <header>
+        <Link href="/" className="quit">もどる</Link>
+      </header>
+      <main>
       {children}
+      </main>
+      <footer></footer>
       </body>
     </html>
   )

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { usePathname,useRouter } from 'next/navigation';
 export const useQuizCountDown = ()=>{
-    const [quizTimer,setQuizTimer] = useState(1);
+    const [quizTimer,setQuizTimer] = useState(15);
     useEffect(()=>{
         if (quizTimer === 0) {
           return
