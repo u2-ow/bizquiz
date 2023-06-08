@@ -1,6 +1,6 @@
 'use client'
 
-import { creatUserData } from "../../utils/creatUserData"
+import { useCreatUserData } from "../hooks/creatUserData"
 import '@/app/globals.scss'
 import Link from "next/link";
 import Styles from "@/app/app.module.scss"
@@ -8,7 +8,7 @@ import Styles from "@/app/app.module.scss"
 
 
 export default function Home() {
- creatUserData();
+  useCreatUserData();
   return (
     <>
       <div className="mainInner">
