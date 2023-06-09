@@ -46,10 +46,11 @@ export default function Page() {
   },150)
   fetchData();
   setCurretUrl(pathname);
-  },[])
+
+  },[pathname])
 
   useEffect(()=>{
-
+ 
     setTimeout(()=>{
       setApperTimer(true)
     },100)
@@ -102,7 +103,7 @@ export default function Page() {
     const selectedText = e.target.innerHTML;
     const selectedChoices = seoChoices.find((item) => item.choice_text === selectedText);
     if(selectedChoices?.is_correct === true){
-      sessionStorage.clear();
+      // sessionStorage.clear();
       if(currentUrl === '/quiz/seo/q1'){
         router.push('/quiz/seo/q2')
         return
@@ -148,7 +149,9 @@ export default function Page() {
     }else{
       const userScore = Number(sessionStorage.getItem('defaultScore') || 10);
       sessionStorage.setItem('defaultScore', String(userScore - 1));
+      console.log('現在のスコア')
       console.log(sessionStorage.defaultScore)
+      console.log('現在のスコア')
       if(currentUrl === '/quiz/seo/q1'){
         router.push('/quiz/seo/q2')
         return

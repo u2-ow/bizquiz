@@ -6,12 +6,11 @@ import { useResultAnimation } from "@/hooks/useResultAnimation";
 
 
 export default function Page() {
-    const [resultScore,setResultScore] = useState<string | null>();
+    const [resultScore,setResultScore] = useState<number | null>();
     const {rewardRight,rewardLeft} = useResultAnimation();
     useEffect(()=>{
-        const score = sessionStorage.getItem('defaultScore');
+        const score = Number(sessionStorage.getItem('defaultScore'));
         setResultScore(score);
-        console.log(score)
         if(score >= 8){
           rewardRight();
           rewardLeft();
