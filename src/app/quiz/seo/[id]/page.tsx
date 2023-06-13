@@ -2,10 +2,11 @@
 
 
 import { useEffect, useState } from "react";
-import fetchSeoQuestion from "../../../../../utils/fetchSeoQuestion";
-import fetchSeoChoice from "../../../../../utils/fetchSeoChoice";
 import { useQuizCountDown } from "@/hooks/useQuizCountDown";
 import { usePathname,useRouter } from 'next/navigation';
+import { useRecoilValue } from "recoil";
+import { seoQuizState} from "../../../../../lib/atoms/seoQuizState"
+
 import Styles from '@/app/quiz/quiz.module.scss'
 
 
@@ -31,20 +32,26 @@ export default function Page() {
   const pathname = usePathname();
   const router = useRouter();
 
+  const text = useRecoilValue(seoQuizState);
+
 
   useEffect(()=>{
-  const fetchData = async () => {
-    const questions = await fetchSeoQuestion();
-    setSeoQuestions(questions as Question[]);
-    const questionId = questions[0].id;
-    console.log(questionId)
-    const choices = await fetchSeoChoice(questionId);
-    setSeoChoices(choices as Choice[])
-  };
+
+  console.log('あああああああああ')
+  console.log(text)
+  console.log('あああああああああ')
+  // const fetchData = async () => {
+  //   const questions = await fetchSeoQuestion();
+  //   setSeoQuestions(questions as Question[]);
+  //   const questionId = questions[0].id;
+  //   console.log(questionId)
+  //   const choices = await fetchSeoChoice(questionId);
+  //   setSeoChoices(choices as Choice[])
+  // };
   setTimeout(()=>{
     setApperTimer(true)
   },150)
-  fetchData();
+  // fetchData();
   setCurretUrl(pathname);
 
   },[pathname])
