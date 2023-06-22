@@ -4,10 +4,13 @@
 import { useEffect, useState } from "react";
 import { useQuizCountDown } from "@/hooks/useQuizCountDown";
 import { usePathname,useRouter } from 'next/navigation';
-import { useRecoilValue } from "recoil";
-import { seoQuizState} from "../../../../../lib/atoms/seoQuizState"
+import { askedQuizState } from "@/lib/atoms/askedQuizState";
 
 import Styles from '@/app/quiz/quiz.module.scss'
+import fetchSeoQuestion from "@/lib/fetchSeoQuestion";
+import fetchSeoChoice from "@/lib/fetchSeoChoice";
+import { useRecoilState } from "recoil";
+import { addQuestionsState } from "@/selectors/addAskedQuestionSelector";
 
 
 
@@ -27,40 +30,53 @@ export default function Page() {
   const [seoChoices,setSeoChoices] = useState<Choice[]>([]);
   const [currentUrl,setCurretUrl] = useState('');
   const [apperTimer,setApperTimer] = useState(false)
+  const [askedQuestions,setAskedQuestions] = useRecoilState(askedQuizState);
+  const [currentQuestion,setCurrentQuestion] = useState(null)
+ 
+ 
 
   const quizTimer = useQuizCountDown();
   const pathname = usePathname();
   const router = useRouter();
 
-  const text = useRecoilValue(seoQuizState);
 
 
+  /* 問題と問題に対応する選択肢を取得 */
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const questions = await fetchSeoQuestion();
+      setSeoQuestions(questions as Question[]);
+      const questionId = questions[0].id;
+      const choices = await fetchSeoChoice(questionId);
+      setSeoChoices(choices as Choice[])
+      setAskedQuestions([...askedQuestions, questionId]);
+      setCurrentQuestion(questionId);      
+      checkQuesionFunc(questionId)
+    };
+  
+    const checkQuesionFunc = (questionId) => {
+      if (askedQuestions.includes(questionId)) {
+        fetchData();
+        console.log('重複しとるがな！')
+      }
+    };
+  
+    fetchData();
+  }, []);
+
+/*タイマーの表示を問題の表示に合わせて表示*/
   useEffect(()=>{
-
-  console.log('あああああああああ')
-  console.log(text)
-  console.log('あああああああああ')
-  // const fetchData = async () => {
-  //   const questions = await fetchSeoQuestion();
-  //   setSeoQuestions(questions as Question[]);
-  //   const questionId = questions[0].id;
-  //   console.log(questionId)
-  //   const choices = await fetchSeoChoice(questionId);
-  //   setSeoChoices(choices as Choice[])
-  // };
-  setTimeout(()=>{
-    setApperTimer(true)
-  },150)
-  // fetchData();
-  setCurretUrl(pathname);
+    setTimeout(()=>{
+      setApperTimer(true)
+    },150)
+    // fetchData();
+    setCurretUrl(pathname);
 
   },[pathname])
 
+/*カウントが0になった時にページを次の問題に遷移する*/
   useEffect(()=>{
- 
-    setTimeout(()=>{
-      setApperTimer(true)
-    },100)
     setCurretUrl(pathname);
     if(quizTimer === 0 && currentUrl === '/quiz/seo/q1'){
       router.push('/quiz/seo/q2')
@@ -104,13 +120,12 @@ export default function Page() {
     }
   },[pathname,router,currentUrl,quizTimer])
 
-
+/* ユーザーが選択した選択肢に対しての処理(ページ遷移、スコアの減算)*/
   const judege = (e)=>{
     console.log(seoChoices)
     const selectedText = e.target.innerHTML;
     const selectedChoices = seoChoices.find((item) => item.choice_text === selectedText);
     if(selectedChoices?.is_correct === true){
-      // sessionStorage.clear();
       if(currentUrl === '/quiz/seo/q1'){
         router.push('/quiz/seo/q2')
         return
@@ -151,14 +166,9 @@ export default function Page() {
         router.push('/result')
         return
       }
-
-
     }else{
       const userScore = Number(sessionStorage.getItem('defaultScore') || 10);
       sessionStorage.setItem('defaultScore', String(userScore - 1));
-      console.log('現在のスコア')
-      console.log(sessionStorage.defaultScore)
-      console.log('現在のスコア')
       if(currentUrl === '/quiz/seo/q1'){
         router.push('/quiz/seo/q2')
         return
@@ -202,6 +212,7 @@ export default function Page() {
 
     }
   }
+
 
 
 
