@@ -1,4 +1,3 @@
-import { FC } from "react";
 import supabase from "./supabase";
 
 

@@ -1,6 +1,7 @@
 'use client'
 
-import { useCreatUserData } from "../hooks/useCreatUserData"
+
+import { useCreatUserData } from '@/hooks/creatUserData';
 import '@/app/globals.scss'
 import Link from "next/link";
 import Styles from "@/app/app.module.scss"
@@ -29,7 +30,7 @@ export default function Home() {
       </div>
 
 
-
+    
 
     </>
   )
