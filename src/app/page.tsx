@@ -1,7 +1,7 @@
 'use client'
 
 
-import { useCreatUserData } from '@/hooks/creatUserData';
+import { useCreatUserData } from '@/hooks/useCreatUserData';
 import '@/app/globals.scss'
 import Link from "next/link";
 import Styles from "@/app/app.module.scss"
