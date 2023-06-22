@@ -1,10 +1,5 @@
 'use client'
 
-import { useRecoilState } from "recoil";
-import { seoQuizState} from "../../lib/atoms/seoQuizState";
-import fetchSeoQuestion from "../../lib/fetchSeoQuestion";
-import fetchSeoChoice from "../../lib/fetchSeoChoice";
-import { useEffect } from "react";
 import { useCreatUserData } from '@/hooks/creatUserData';
 
 
@@ -16,26 +11,6 @@ import Styles from "@/app/app.module.scss"
 
 export default function Home() {
   useCreatUserData();
-  const [seoQuiz,setSeoQuiz] =useRecoilState(seoQuizState);
-
-  useEffect( ()=>{
-    const fetchSeoQizData = async ()=>{
-      const questions =  await fetchSeoQuestion();
-      console.log(questions)
-      setSeoQuiz(questions)
-  
-      const questionId = questions[0].id;
-      console.log(questionId)
-      const choices = await fetchSeoChoice(questionId);
-      console.log(choices)
-    }
-    fetchSeoQizData();
-  },[])
-  const fetchSeoQuiz =  () => {
-    console.log('グローバルステート！')
-    console.log(seoQuiz)
-    console.log('グローバルステート！')
-  };
   return (
     <>
       <div className="mainInner">
@@ -56,7 +31,7 @@ export default function Home() {
       </div>
 
 
-
+    
 
     </>
   )
