@@ -23,9 +23,7 @@ export default function Page({}: Props) {
         return () => clearInterval(interval);
       }, [count,router]);
 
-  return (
-
-        <p className={Styles.count} >{count === 0 ? "START" : count }</p>
-
-  )
+    return (
+      <p className={Styles.count} >{count === 0 ? "START" : count }</p>
+    )
 }
