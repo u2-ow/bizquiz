@@ -1,62 +1,55 @@
 @use  '@/styles/variables.scss' as v;
-.appName{
-    font-size: 80px;
-    text-shadow: var(--text-shadow);
-    text-align: center;
-    @include v.mq(w320){
-        font-size: 70px;
-    }
-
-    .textBlue{
-        color: v.$main_blue;
-        text-shadow: v.$black-text-shadow;
-    }
-    .textRed{
-        color: v.$main_red;
-        text-shadow: v.$black-text-shadow;
-    }
-    .textYellow{
-        color: v.$main_yellow;
-        text-shadow: v.$black-text-shadow;
-    }
-    .textGreen{
-        color: v.$main_green;
-        text-shadow: v.$black-text-shadow;
-        margin: 0 10px;
-    }
-}
-
-.text{
-    text-align: center;
-    margin-top: 60px;
-    @include v.mq(w320){
-        margin-top: 35px;
-    }
-}
-.modeList{
-    max-width: 300px;
-    margin: 16px auto auto;
-    .modeItem{
-        font-size: 25px;
+.appMainInner{
+    margin-top: 250px;
+    .appName{
+        font-size: 80px;
+        text-shadow: var(--text-shadow);
         text-align: center;
-        text-shadow: v.$red-text-shadow;
-        letter-spacing: 2px;
-        width: fit-content;
-        margin: 0 auto;
+        color: #fff;
+        text-shadow: 1px 2px 1px rgba(0,0,0,0.3);
         @include v.mq(w320){
+            font-size: 70px;
+        }
+    
+    }
+    .appText{
+        text-align: center;
+        margin:16px auto 32px auto;
+        color: v.$main_brown;
+        font-weight: bold;
+    }
+    .appModeList{
+        max-width: 300px;
+        margin: 32px auto auto;
+        .appModeItem{
             font-size: 20px;
-            margin-bottom: 5px;
-        }
-        &:hover{
-            animation: v.$text-animation;
-        }
-        .modeLink{
-            display: block;
-            text-decoration: none;
-            color: #fff;
+            text-align: center;
+            width: fit-content;
+            margin: 0 auto;
+            background-color: v.$main_cream_white;
+            border-radius: 50px;
+            width: 150px;
+            padding: 4px 0;
+            @include v.mq(w320){
+                font-size: 20px;
+                margin-bottom: 5px;
+            }
+            .appModeLink{
+                display: block;
+                text-decoration: none;
+                color: v.$main_brown;
+                font-weight: bold;
+                &:hover{
+                    animation: v.$text-animation;
+                }
+            }
         }
     }
+
 }
+
+
+
 
 @keyframes blinking {
 	0% {opacity: 0;}

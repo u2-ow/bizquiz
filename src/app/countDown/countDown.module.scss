@@ -1,4 +1,7 @@
+@use  '@/styles/variables.scss' as v;
+
 .count{
+    color: v.$main_brown;
     font-size: 100px;
     position: relative;
     top:250px;

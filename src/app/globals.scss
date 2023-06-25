@@ -1,6 +1,6 @@
 @use  '@/styles/variables.scss' as v;
 body{
-    background-color: v.$main_yellow;
+    background-color: #d4ead1;
 }
 
 .mainInner{
@@ -17,10 +17,10 @@ body{
     right: 10px;
     text-decoration: unset;
     &:hover{
-        text-shadow: v.$red-text-shadow;
+        text-shadow: v.$yellow-text-shadow;
     }
     @include v.mq(w425){
-        text-shadow: v.$red-text-shadow;
+        text-shadow: v.$yellow-text-shadow;
     }
 }
 
