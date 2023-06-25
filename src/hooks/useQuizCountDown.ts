@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 export const useQuizCountDown = ()=>{
-    const [quizTimer,setQuizTimer] = useState(15);
+    const [quizTimer,setQuizTimer] = useState(20);
     useEffect(()=>{
         if (quizTimer === 0) {
           return
