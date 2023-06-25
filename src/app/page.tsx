@@ -15,7 +15,6 @@ import { useEffect } from 'react';
 export default function Home() {
   const [askedQuestions,setAskedQuestions] = useRecoilState(askedQuizState);
   useCreatUserData();
-
   useEffect(()=>{
     setAskedQuestions([]);
   },[])
@@ -23,20 +22,13 @@ export default function Home() {
 }, [askedQuestions]);
   return (
     <>
-      <div className="mainInner">
+      <div className={Styles.appMainInner}>
         <h1 className={Styles.appName}>
-          <span className={Styles.textBlue}>b</span>
-          <span className={Styles.textYellow}>i</span>
-          <span className={Styles.textRed}>z</span>
-          <span className={Styles.textGreen}>q</span>
-          <span className={Styles.textYellow}>u</span>
-          <span className={Styles.textBlue}>i</span>
-          <span className={Styles.textRed}>z</span>
+          bizquiz
         </h1>
-        <p className={Styles.text}>クイズのカテゴリを選択してください。</p>
-        <ul className={Styles.modeList}>
-          <li className={Styles.modeItem}><Link href='/countDown' className={Styles.modeLink}>SEO</Link></li>
-          <li className={Styles.modeItem}><Link href='/countDown' className={Styles.modeLink}>MARKETING</Link></li>
+        <p className={Styles.appText}>SEOやマーケティングで使用される用語の4択のクイズゲーム！</p>
+        <ul className={Styles.appModeList}>
+          <li className={Styles.appModeItem}><Link href='/countDown' className={Styles.appModeLink}>あそぶ</Link></li>
         </ul>
       </div>
 
