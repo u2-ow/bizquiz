@@ -10,7 +10,6 @@ import Styles from '@/app/quiz/quiz.module.scss'
 import fetchSeoQuestion from "@/lib/fetchSeoQuestion";
 import fetchSeoChoice from "@/lib/fetchSeoChoice";
 import { useRecoilState } from "recoil";
-import { addQuestionsState } from "@/selectors/addAskedQuestionSelector";
 
 
 
