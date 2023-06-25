@@ -58,7 +58,6 @@ export default function Page() {
     const checkQuesionFunc = (questionId) => {
       if (askedQuestions.includes(questionId)) {
         fetchData();
-        console.log('重複しとるがな！')
       }
     };
   
@@ -78,43 +77,54 @@ export default function Page() {
 /*カウントが0になった時にページを次の問題に遷移する*/
   useEffect(()=>{
     setCurretUrl(pathname);
+    const userScore = Number(sessionStorage.getItem('defaultScore') || 10);
     if(quizTimer === 0 && currentUrl === '/quiz/seo/q1'){
+      sessionStorage.setItem('defaultScore', String(userScore - 1));
       router.push('/quiz/seo/q2')
       return
     }
     if(quizTimer === 0 && currentUrl === '/quiz/seo/q2'){
+      sessionStorage.setItem('defaultScore', String(userScore - 1));
       router.push('/quiz/seo/q3')
       return
     }
     if(quizTimer === 0 && currentUrl === '/quiz/seo/q3'){
+      sessionStorage.setItem('defaultScore', String(userScore - 1));
       router.push('/quiz/seo/q4')
       return
     }
     if(quizTimer === 0 && currentUrl === '/quiz/seo/q4'){
+      sessionStorage.setItem('defaultScore', String(userScore - 1));
       router.push('/quiz/seo/q5')
       return
     }
     if(quizTimer === 0 && currentUrl === '/quiz/seo/q5'){
+      sessionStorage.setItem('defaultScore', String(userScore - 1));
       router.push('/quiz/seo/q6')
       return
     }
     if(quizTimer === 0 && currentUrl === '/quiz/seo/q6'){
+      sessionStorage.setItem('defaultScore', String(userScore - 1));
       router.push('/quiz/seo/q7')
       return
     }
     if(quizTimer === 0 && currentUrl === '/quiz/seo/q7'){
+      sessionStorage.setItem('defaultScore', String(userScore - 1));
       router.push('/quiz/seo/q8')
       return
     }
     if(quizTimer === 0 && currentUrl === '/quiz/seo/q8'){
+      sessionStorage.setItem('defaultScore', String(userScore - 1));
       router.push('/quiz/seo/q9')
       return
     }
     if(quizTimer === 0 && currentUrl === '/quiz/seo/q9'){
+      sessionStorage.setItem('defaultScore', String(userScore - 1));
       router.push('/quiz/seo/q10')
       return
     }
     if(currentUrl === '/quiz/seo/q10'){
+      sessionStorage.setItem('defaultScore', String(userScore - 1));
       router.push('/result')
       return
     }
