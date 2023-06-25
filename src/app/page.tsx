@@ -5,11 +5,22 @@ import { useCreatUserData } from '@/hooks/useCreatUserData';
 import '@/app/globals.scss'
 import Link from "next/link";
 import Styles from "@/app/app.module.scss"
+import { useRecoilState } from 'recoil';
+import { askedQuizState } from '@/lib/atoms/askedQuizState';
+import { useEffect } from 'react';
+
 
 
 
 export default function Home() {
+  const [askedQuestions,setAskedQuestions] = useRecoilState(askedQuizState);
   useCreatUserData();
+
+  useEffect(()=>{
+    setAskedQuestions([]);
+  },[])
+  useEffect(() => {
+}, [askedQuestions]);
   return (
     <>
       <div className="mainInner">
