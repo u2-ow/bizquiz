@@ -12,12 +12,10 @@ import fetchSeoChoice from "@/lib/fetchSeoChoice";
 import { useRecoilState } from "recoil";
 import { addQuestionsState } from "@/selectors/addAskedQuestionSelector";
 
+import { Question } from "@/types/question";
 
 
-type Question = {
-  id: number;
-  question: string;
-};
+
 type Choice = {
   id: number;
   choice_text: string;
@@ -30,7 +28,7 @@ export default function Page() {
   const [seoChoices,setSeoChoices] = useState<Choice[]>([]);
   const [currentUrl,setCurretUrl] = useState('');
   const [apperTimer,setApperTimer] = useState(false)
-  const [askedQuestions,setAskedQuestions] = useRecoilState(askedQuizState);
+  const [askedQuestions,setAskedQuestions] = useRecoilState<Question[]>(askedQuizState);
   const [currentQuestion,setCurrentQuestion] = useState(null)
  
  
@@ -47,16 +45,25 @@ export default function Page() {
     const fetchData = async () => {
       const questions = await fetchSeoQuestion();
       setSeoQuestions(questions as Question[]);
-      const questionId = questions[0].id;
-      const choices = await fetchSeoChoice(questionId);
-      setSeoChoices(choices as Choice[])
-      setAskedQuestions([...askedQuestions, questionId]);
-      setCurrentQuestion(questionId);      
-      checkQuesionFunc(questionId)
+      if(questions && questions.length >0){
+        const questionId = questions[0].id;
+        const choices = await fetchSeoChoice(questionId);
+        setSeoChoices(choices as Choice[])
+        setAskedQuestions([...askedQuestions, questionId]);
+        setCurrentQuestion(questionId);      
+        checkQuesionFunc(questionId)
+      }
+      return
+
+
+
+
+
+
+
     };
   
-    const checkQuesionFunc = (questionId) => {
-      console.log(askedQuestions)
+    const checkQuesionFunc = (questionId:Question) => {
       if (askedQuestions.includes(questionId)) {
         fetchData();
       }
