@@ -3,9 +3,9 @@ import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 import Styles from '@/app/countDown/countDown.module.scss'
 
-type Props = {}
 
-export default function Page({}: Props) {
+
+export default function Page() {
     const [count,setCount] = useState(3);
     const router = useRouter();
 
