@@ -32,7 +32,7 @@ export default function Home() {
           <span className={Styles.blueText}>i</span>
           <span className={Styles.pinkText}>z</span>
         </h1>
-        <p className={Styles.appText}>SEOやマーケティングで使用される用語の4択のクイズゲーム！</p>
+        <p className={Styles.appText}>SEOやマーケティングで使用される用語の<span className="lf">4択のクイズゲーム！</span></p>
         <Link href='/countDown' className={Styles.appStartButton}><span className={Styles.appStartButtonText}>はじめる</span></Link>
       </div>
 
