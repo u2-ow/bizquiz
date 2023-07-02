@@ -2,12 +2,15 @@
 .appMainInner{
     margin-top: 250px;
     .appName{
-        font-size: 80px;
+        font-size: 100px;
         text-shadow: var(--text-shadow);
         text-align: center;
         color: #fff;
         text-shadow: 1px 2px 1px rgba(0,0,0,0.3);
-        @include v.mq(w320){
+        @include v.mq(w768){
+            font-size: 90px;
+        }
+        @include v.mq(w425){
             font-size: 70px;
         }
         .pinkText{
@@ -26,6 +29,10 @@
         margin:16px auto 42px auto;
         color: v.$main_brown;
         font-weight: bold;
+        font-size: 18px;
+        @include v.mq(w425){
+            font-size: 16px;
+        }
     }
     .appStartButton{
         font-size: 20px;
@@ -41,11 +48,12 @@
         color: v.$main_brown;
         font-weight: bold;
         border: solid 3px v.$main_yellow;
-        .appStartButtonText{
-            &:hover{
+        &:hover{
+            .appStartButtonText{
                 animation: v.$text-animation;
             }
         }
+
 
     }
 
