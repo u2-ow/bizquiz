@@ -24,12 +24,16 @@ export default function Home() {
     <>
       <div className={Styles.appMainInner}>
         <h1 className={Styles.appName}>
-          bizquiz
+          <span className={Styles.pinkText}>b</span>
+          <span className={Styles.yellowText}>i</span>
+          <span className={Styles.blueText}>z</span>
+          <span className={Styles.pinkText}>q</span>
+          <span className={Styles.yellowText}>u</span>
+          <span className={Styles.blueText}>i</span>
+          <span className={Styles.pinkText}>z</span>
         </h1>
         <p className={Styles.appText}>SEOやマーケティングで使用される用語の4択のクイズゲーム！</p>
-        <ul className={Styles.appModeList}>
-          <li className={Styles.appModeItem}><Link href='/countDown' className={Styles.appModeLink}>あそぶ</Link></li>
-        </ul>
+        <Link href='/countDown' className={Styles.appStartButton}><span className={Styles.appStartButtonText}>はじめる</span></Link>
       </div>
 
 
