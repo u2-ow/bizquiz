@@ -16,7 +16,7 @@ export default function Page() {
         if (count === 0) {
           clearInterval(interval);
           setTimeout(() => {
-            router.push("/quiz/seo/q1")
+            router.push("/quiz/q1")
           }, 500); 
        
         }
