@@ -1,6 +1,8 @@
 @use  '@/styles/variables.scss' as v;
 body{
-    background-color: #d4ead1;
+    background-image: url('/bg.svg');
+    background-color: v.$main_beige;
+    height: 100%;
 }
 
 .mainInner{
