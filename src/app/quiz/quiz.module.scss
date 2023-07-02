@@ -12,9 +12,15 @@
         border-radius: 50%;
         position: absolute;
         top: -40px;
-        left: 46%;
+        left: calc(50% - 40px);
         z-index: 1;
         overflow: hidden;
+        @include v.mq(w425){
+            width: 69px;
+            height:69px;
+            left: calc(50% - 35px);
+        }
+
         .quizSemiNumberCircle{
             width: 50%;
             height: 100%;
@@ -56,37 +62,27 @@
             line-height: 76px;
             text-align: center;
             font-size: 25px;
-    
-        }
-
- 
-        
+            @include v.mq(w425){
+                width: 65px;
+                height: 65px;
+                line-height: 65px;
+            }
+        }   
     }
-
-    // .quizNumber{
-    //     background: #fff;
-    //     line-height: 75px;
-    //     text-align: center;
-    //     font-size: 30px;
-    //     border-radius: 50%;
-    //     border: solid 3px v.$main_yellow;
-    // }
-    // .quizNumberCircleCountDown{
-    //     position: absolute;
-    //     width: 40px;
-    //     height: 80px;
-    //     background-color: red;
-    // }
     .quizInner{
         max-width: 800px;
         margin: 45px auto auto;
         padding: 16px;
-
-    padding-bottom: 40px;
-
+        padding-bottom: 40px;
+        @include v.mq(w425){
+            margin: 25px auto auto;
+        }
         .quizQuesion{
             font-size: 20px;
             font-weight: bold;
+            @include v.mq(w425){
+                font-size: 18px;
+            }
         }
         .quizChoices{
             display: flex;

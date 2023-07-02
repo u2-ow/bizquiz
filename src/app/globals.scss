@@ -3,6 +3,9 @@ body{
     background-image: url('/bg.svg');
     background-color: v.$main_beige;
     height: 100%;
+    @include v.mq(w425){
+        background-image: unset;
+    }
 }
 
 .mainInner{
@@ -24,6 +27,9 @@ body{
     @include v.mq(w425){
         text-shadow: v.$yellow-text-shadow;
     }
+}
+.lf{
+    display: inline-block;
 }
 
 
