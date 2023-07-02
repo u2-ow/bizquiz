@@ -1,9 +1,9 @@
 'use client'
 
 
-import { useEffect, useState } from "react";
+import { useEffect, useState,useRef } from "react";
 import { useQuizCountDown } from "@/hooks/useQuizCountDown";
-import { usePathname,useRouter } from 'next/navigation';
+import { useParams, usePathname,useRouter, useSearchParams } from 'next/navigation';
 import { askedQuizState } from "@/lib/atoms/askedQuizState";
 
 import Styles from '@/app/quiz/quiz.module.scss'
@@ -30,22 +30,27 @@ export default function Page() {
   const [apperTimer,setApperTimer] = useState(false)
   const [askedQuestions,setAskedQuestions] = useRecoilState<Question[]>(askedQuizState);
   const [currentQuestion,setCurrentQuestion] = useState(null)
- 
+  const quizSemiNumberCircleRef01 = useRef(null)
+  const quizSemiNumberCircleRef02 = useRef(null)
+  const quizSemiNumberCircleRef03 = useRef(null)
  
 
   const quizTimer = useQuizCountDown();
   const pathname = usePathname();
   const router = useRouter();
-
-
+  const params = useParams();
+ 
+  // console.log(params);
 
   /* 問題と問題に対応する選択肢を取得 */
 
   useEffect(() => {
+   
     const fetchData = async () => {
       const questions = await fetchSeoQuestion();
       setSeoQuestions(questions as Question[]);
       if(questions && questions.length >0){
+        console.log(questions)
         const questionId = questions[0].id;
         const choices = await fetchSeoChoice(questionId);
         setSeoChoices(choices as Choice[])
@@ -54,13 +59,6 @@ export default function Page() {
         checkQuesionFunc(questionId)
       }
       return
-
-
-
-
-
-
-
     };
   
     const checkQuesionFunc = (questionId:Question) => {
@@ -76,6 +74,7 @@ export default function Page() {
   useEffect(()=>{
     setTimeout(()=>{
       setApperTimer(true)
+      
     },150)
     setCurretUrl(pathname);
 
@@ -130,7 +129,7 @@ export default function Page() {
       router.push('/quiz/seo/q10')
       return
     }
-    if(currentUrl === '/quiz/seo/q10'){
+    if(quizTimer === 0 && currentUrl === '/quiz/seo/q10'){
       sessionStorage.setItem('defaultScore', String(userScore - 1));
       router.push('/result')
       return
@@ -230,31 +229,66 @@ export default function Page() {
     }
   }
 
+useEffect(()=>{
+  const quizSemiNumberCircle01 = quizSemiNumberCircleRef01.current;
+  const quizSemiNumberCircle02 = quizSemiNumberCircleRef02.current;
+  const quizSemiNumberCircle03 = quizSemiNumberCircleRef03.current;
+
+  if(quizSemiNumberCircle01){
+    quizSemiNumberCircle01.style.transform ='rotate(180deg)';
+    quizSemiNumberCircle01.style.transition ='10s linear';
+  }
+  if(quizSemiNumberCircle02){
+    quizSemiNumberCircle02.style.transform ='rotate(360deg)';
+    quizSemiNumberCircle02.style.transition ='20s linear';
+
+  }
+  if(quizSemiNumberCircle03){
+    quizSemiNumberCircle03.style.opacity ='0';
+    quizSemiNumberCircle03.style.transition ='opacity 0s 10s';
+ 
+  }
+
+},[])
+
+  
+
 
 
 
   return (
     <>
     <div className="mainInner">
-        {apperTimer &&  <p className={Styles.questionCount}>{quizTimer}</p>}
+        {/* {apperTimer &&  <p className={Styles.questionCount}>{quizTimer}</p>} */}
         <div className={Styles.quizContent}>
-
-            {
-                  seoQuestions.map((seoQuestion) => (
-                    <p key={seoQuestion.id} className={Styles.question}>
-                      {seoQuestion.question}
-                    </p>
-                  ))
-            }
-            <ul className={Styles.choiceList}>
-            {
-                  seoChoices.map((seoChoice) => (
-                    <li key={seoChoice.id} onClick={judege} className={Styles.choiceItem}>
-                      {seoChoice.choice_text}
-                    </li>
-                  ))
+          <div className={Styles.quizNumberCircle}>
+            
+            <div className={Styles.quizSemiNumberCircle} ref={quizSemiNumberCircleRef01}></div>
+            <div className={Styles.quizSemiNumberCircle} ref={quizSemiNumberCircleRef02}></div>
+            <div className={Styles.quizSemiNumberCircle} ref={quizSemiNumberCircleRef03}></div>
+            <div className={Styles.outerCircle}>{`${params.id.toUpperCase()}`}</div>
+         
+          </div>
+          {/* <p className={Styles.quizNumber}></p> */}
+          <div className={Styles.quizInner}>
+              {
+                    seoQuestions.map((seoQuestion) => (
+                      <p key={seoQuestion.id} className={Styles.quizQuesion}>
+                        {seoQuestion.question}
+                      </p>
+                    ))
               }
-            </ul>
+              <ul className={Styles.quizChoices}>
+              {
+                    seoChoices.map((seoChoice) => (
+                      <li key={seoChoice.id} onClick={judege} className={Styles.quizChoicesItem}>
+                        {seoChoice.choice_text}
+                      </li>
+                    ))
+                }
+              </ul>
+          </div>
+
 
 
         </div>
