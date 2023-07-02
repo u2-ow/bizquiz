@@ -10,41 +10,45 @@
         @include v.mq(w320){
             font-size: 70px;
         }
+        .pinkText{
+            color: v.$main_pink;
+        }
+        .blueText{
+            color: v.$main_blue;
+        }
+        .yellowText{
+            color: v.$main_yellow;
+        }
     
     }
     .appText{
         text-align: center;
-        margin:16px auto 32px auto;
+        margin:16px auto 42px auto;
         color: v.$main_brown;
         font-weight: bold;
     }
-    .appModeList{
-        max-width: 300px;
-        margin: 32px auto auto;
-        .appModeItem{
-            font-size: 20px;
-            text-align: center;
-            width: fit-content;
-            margin: 0 auto;
-            background-color: v.$main_cream_white;
-            border-radius: 50px;
-            width: 150px;
-            padding: 4px 0;
-            @include v.mq(w320){
-                font-size: 20px;
-                margin-bottom: 5px;
-            }
-            .appModeLink{
-                display: block;
-                text-decoration: none;
-                color: v.$main_brown;
-                font-weight: bold;
-                &:hover{
-                    animation: v.$text-animation;
-                }
+    .appStartButton{
+        font-size: 20px;
+        text-align: center;
+        width: fit-content;
+        margin: 0 auto;
+        background-color: v.$main_cream_white;
+        border-radius: 50px;
+        width: 180px;
+        padding: 4px 0;
+        display: block;
+        text-decoration: none;
+        color: v.$main_brown;
+        font-weight: bold;
+        border: solid 3px v.$main_yellow;
+        .appStartButtonText{
+            &:hover{
+                animation: v.$text-animation;
             }
         }
+
     }
+
 
 }
 
