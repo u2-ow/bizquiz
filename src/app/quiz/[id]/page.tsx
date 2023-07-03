@@ -30,10 +30,15 @@ export default function Page() {
   const [apperTimer,setApperTimer] = useState(false)
   const [askedQuestions,setAskedQuestions] = useRecoilState<Question[]>(askedQuizState);
   const [currentQuestion,setCurrentQuestion] = useState(null)
+
+  /*カウントダウン用のRef*/
   const quizSemiNumberCircleRef01 = useRef(null)
   const quizSemiNumberCircleRef02 = useRef(null)
   const quizSemiNumberCircleRef03 = useRef(null)
- 
+
+  /*正誤のRef*/
+  const quizCorrectMarkRef = useRef<HTMLDivElement>(document.createElement('div'));
+  const quizIncorrectMarkRef = useRef<HTMLDivElement>(document.createElement('div'));
 
   const quizTimer = useQuizCountDown();
   const pathname = usePathname();
@@ -86,143 +91,273 @@ export default function Page() {
     const userScore = Number(sessionStorage.getItem('defaultScore') || 10);
     if(quizTimer === 0 && currentUrl === '/quiz/q1'){
       sessionStorage.setItem('defaultScore', String(userScore - 1));
-      router.push('/quiz/q2')
+      const inCorrectMark = quizIncorrectMarkRef.current
+      inCorrectMark.style.display ='block';
+      setTimeout(()=>{
+          router.push('/quiz/q2')
+      },500)
+    
       return
     }
     if(quizTimer === 0 && currentUrl === '/quiz/q2'){
       sessionStorage.setItem('defaultScore', String(userScore - 1));
-      router.push('/quiz/q3')
+      const inCorrectMark = quizIncorrectMarkRef.current
+      inCorrectMark.style.display ='block';
+      setTimeout(()=>{
+          router.push('/quiz/q3')
+      },500)
+    
       return
     }
     if(quizTimer === 0 && currentUrl === '/quiz/q3'){
       sessionStorage.setItem('defaultScore', String(userScore - 1));
-      router.push('/quiz/q4')
+      const inCorrectMark = quizIncorrectMarkRef.current
+      inCorrectMark.style.display ='block';
+      setTimeout(()=>{
+          router.push('/quiz/q4')
+      },500)
+    
       return
     }
     if(quizTimer === 0 && currentUrl === '/quiz/q4'){
       sessionStorage.setItem('defaultScore', String(userScore - 1));
-      router.push('/quiz/q5')
+      const inCorrectMark = quizIncorrectMarkRef.current
+      inCorrectMark.style.display ='block';
+      setTimeout(()=>{
+          router.push('/quiz/q5')
+      },500)
+    
       return
     }
     if(quizTimer === 0 && currentUrl === '/quiz/q5'){
       sessionStorage.setItem('defaultScore', String(userScore - 1));
-      router.push('/quiz/q6')
+      const inCorrectMark = quizIncorrectMarkRef.current
+      inCorrectMark.style.display ='block';
+      setTimeout(()=>{
+          router.push('/quiz/q6')
+      },500)
+    
       return
     }
     if(quizTimer === 0 && currentUrl === '/quiz/q6'){
       sessionStorage.setItem('defaultScore', String(userScore - 1));
-      router.push('/quiz/q7')
+      const inCorrectMark = quizIncorrectMarkRef.current
+      inCorrectMark.style.display ='block';
+      setTimeout(()=>{
+          router.push('/quiz/q7')
+      },500)
+    
       return
     }
     if(quizTimer === 0 && currentUrl === '/quiz/q7'){
       sessionStorage.setItem('defaultScore', String(userScore - 1));
-      router.push('/quiz/q8')
+      const inCorrectMark = quizIncorrectMarkRef.current
+      inCorrectMark.style.display ='block';
+      setTimeout(()=>{
+          router.push('/quiz/q8')
+      },500)
+    
       return
     }
     if(quizTimer === 0 && currentUrl === '/quiz/q8'){
       sessionStorage.setItem('defaultScore', String(userScore - 1));
-      router.push('/quiz/q9')
+      const inCorrectMark = quizIncorrectMarkRef.current
+      inCorrectMark.style.display ='block';
+      setTimeout(()=>{
+          router.push('/quiz/q9')
+      },500)
+    
       return
     }
     if(quizTimer === 0 && currentUrl === '/quiz/q9'){
       sessionStorage.setItem('defaultScore', String(userScore - 1));
-      router.push('/quiz/q10')
+      const inCorrectMark = quizIncorrectMarkRef.current
+      inCorrectMark.style.display ='block';
+      setTimeout(()=>{
+          router.push('/quiz/q10')
+      },500)
+    
       return
     }
     if(quizTimer === 0 && currentUrl === '/quiz/q10'){
       sessionStorage.setItem('defaultScore', String(userScore - 1));
-      router.push('/result')
+      const inCorrectMark = quizIncorrectMarkRef.current
+      inCorrectMark.style.display ='block';
+      setTimeout(()=>{
+          router.push('/result')
+      },500)
+    
       return
     }
   },[pathname,router,currentUrl,quizTimer])
 
 /* ユーザーが選択した選択肢に対しての処理(ページ遷移、スコアの減算)*/
   const judege = (e)=>{
-    console.log(seoChoices)
     const selectedText = e.target.innerHTML;
     const selectedChoices = seoChoices.find((item) => item.choice_text === selectedText);
     if(selectedChoices?.is_correct === true){
       if(currentUrl === '/quiz/q1'){
-        router.push('/quiz/q2')
+        const correctMark = quizCorrectMarkRef.current
+        correctMark.style.display ='block';
+        setTimeout(()=>{
+            router.push('/quiz/q2')
+        },500)
         return
       }
       if(currentUrl === '/quiz/q2'){
-        router.push('/quiz/q3')
+        const correctMark = quizCorrectMarkRef.current
+        correctMark.style.display ='block';
+        setTimeout(()=>{
+            router.push('/quiz/q3')
+        },500)
         return
       }
       if(currentUrl === '/quiz/q3'){
-        router.push('/quiz/q4')
+        const correctMark = quizCorrectMarkRef.current
+        correctMark.style.display ='block';
+        setTimeout(()=>{
+            router.push('/quiz/q4')
+        },500)
         return
       }
       if(currentUrl === '/quiz/q4'){
-        router.push('/quiz/q5')
+        const correctMark = quizCorrectMarkRef.current
+        correctMark.style.display ='block';
+        setTimeout(()=>{
+            router.push('/quiz/q5')
+        },500)
         return
       }
       if(currentUrl === '/quiz/q5'){
-        router.push('/quiz/q6')
+        const correctMark = quizCorrectMarkRef.current
+        correctMark.style.display ='block';
+        setTimeout(()=>{
+            router.push('/quiz/q6')
+        },500)
         return
       }
       if(currentUrl === '/quiz/q6'){
-        router.push('/quiz/q7')
+        const correctMark = quizCorrectMarkRef.current
+        correctMark.style.display ='block';
+        setTimeout(()=>{
+            router.push('/quiz/q7')
+        },500)
         return
       }
       if(currentUrl === '/quiz/q7'){
-        router.push('/quiz/q8')
+        const correctMark = quizCorrectMarkRef.current
+        correctMark.style.display ='block';
+        setTimeout(()=>{
+            router.push('/quiz/q8')
+        },500)
         return
       }
       if(currentUrl === '/quiz/q8'){
-        router.push('/quiz/q9')
+        const correctMark = quizCorrectMarkRef.current
+        correctMark.style.display ='block';
+        setTimeout(()=>{
+            router.push('/quiz/q9')
+        },500)
         return
       }
       if(currentUrl === '/quiz/q9'){
-        router.push('/quiz/q10')
+        const correctMark = quizCorrectMarkRef.current
+        correctMark.style.display ='block';
+        setTimeout(()=>{
+            router.push('/quiz/q10')
+        },500)
         return
       }
       if(currentUrl === '/quiz/q10'){
-        router.push('/result')
+        const correctMark = quizCorrectMarkRef.current
+        correctMark.style.display ='block';
+        setTimeout(()=>{
+            router.push('/result')
+        },500)
         return
       }
     }else{
       const userScore = Number(sessionStorage.getItem('defaultScore') || 10);
       sessionStorage.setItem('defaultScore', String(userScore - 1));
       if(currentUrl === '/quiz/q1'){
-        router.push('/quiz/q2')
+        console.log(quizCorrectMarkRef)
+        const IncorrectMark = quizIncorrectMarkRef.current
+        IncorrectMark.style.display ='block';
+        setTimeout(()=>{
+                  router.push('/quiz/q2')
+        },500)
+
         return
       }
       if(currentUrl === '/quiz/q2'){
-        router.push('/quiz/q3')
+        const IncorrectMark = quizIncorrectMarkRef.current
+        IncorrectMark.style.display ='block';
+        setTimeout(()=>{
+            router.push('/quiz/q3')
+        },500)
         return
       }
       if(currentUrl === '/quiz/q3'){
-        router.push('/quiz/q4')
+        const IncorrectMark = quizIncorrectMarkRef.current
+        IncorrectMark.style.display ='block';
+        setTimeout(()=>{
+            router.push('/quiz/q4')
+        },500)
         return
       }
       if(currentUrl === '/quiz/q4'){
-        router.push('/quiz/q5')
+        IncorrectMark.style.display ='block';
+        setTimeout(()=>{
+            router.push('/quiz/q5')
+        },500)
         return
       }
       if(currentUrl === '/quiz/q5'){
-        router.push('/quiz/q6')
+        const IncorrectMark = quizIncorrectMarkRef.current
+        IncorrectMark.style.display ='block';
+        setTimeout(()=>{
+            router.push('/quiz/q6')
+        },500)
         return
       }
       if(currentUrl === '/quiz/q6'){
-        router.push('/quiz/q7')
+        const IncorrectMark = quizIncorrectMarkRef.current
+        IncorrectMark.style.display ='block';
+        setTimeout(()=>{
+            router.push('/quiz/q7')
+        },500)
         return
       }
       if(currentUrl === '/quiz/q7'){
-        router.push('/quiz/q8')
+        const IncorrectMark = quizIncorrectMarkRef.current
+        IncorrectMark.style.display ='block';
+        setTimeout(()=>{
+            router.push('/quiz/q8')
+        },500)
         return
       }
       if(currentUrl === '/quiz/q8'){
-        router.push('/quiz/q9')
+        const IncorrectMark = quizIncorrectMarkRef.current
+        IncorrectMark.style.display ='block';
+        setTimeout(()=>{
+            router.push('/quiz/q9')
+        },500)
         return
       }
       if(currentUrl === '/quiz/q9'){
-        router.push('/quiz/q10')
+        const IncorrectMark = quizIncorrectMarkRef.current
+        IncorrectMark.style.display ='block';
+        setTimeout(()=>{
+            router.push('/quiz/q10')
+        },500)
         return
       }
       if(currentUrl === '/quiz/q10'){
-        router.push('/result')
+        const IncorrectMark = quizIncorrectMarkRef.current
+        IncorrectMark.style.display ='block';
+        setTimeout(()=>{
+            router.push('/result')
+        },500)
         return
       }
 
@@ -261,7 +396,7 @@ useEffect(()=>{
   return (
     <>
     <div className="mainInner">
-        {/* {apperTimer &&  <p className={Styles.questionCount}>{quizTimer}</p>} */}
+       
         <div className={Styles.quizContent}>
           <div className={Styles.quizNumberCircle}>
             
@@ -271,7 +406,7 @@ useEffect(()=>{
             <div className={Styles.outerCircle}>{`${params.id.toUpperCase()}`}</div>
          
           </div>
-          {/* <p className={Styles.quizNumber}></p> */}
+
           <div className={Styles.quizInner}>
               {
                     seoQuestions.map((seoQuestion) => (
@@ -289,6 +424,13 @@ useEffect(()=>{
                     ))
                 }
               </ul>
+              
+              <div className={Styles.quizCorrectMark} ref={quizCorrectMarkRef}>
+                <p className={Styles.quizCorrectMarkText}>正解</p>
+              </div>
+              <div className={Styles.quizIncorrectMark} ref={quizIncorrectMarkRef}>
+                <p className={Styles.quizIncorrectMarkText}>不正解</p>
+              </div>
           </div>
 
 

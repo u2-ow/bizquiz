@@ -74,6 +74,7 @@
         margin: 45px auto auto;
         padding: 16px;
         padding-bottom: 40px;
+        position: relative;
         @include v.mq(w425){
             margin: 25px auto auto;
         }
@@ -102,6 +103,35 @@
                 }
             }
         }
-        
+        .quizCorrectMark{
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: v.$main_pink;;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 40px;
+            line-height: 200px;
+            color: #fff;
+            font-weight: 500;
+            top: 0;
+            left: 37%;
+            display: none;
+        }
+        .quizIncorrectMark{
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: v.$main_blue;;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 40px;
+            line-height: 200px;
+            color: #fff;
+            font-weight: 500;
+            top: 0;
+            left: 37%;
+            display: none;
+        }
     }
 }
