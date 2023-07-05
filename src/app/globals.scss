@@ -3,6 +3,7 @@ body{
     background-image: url('/bg.svg');
     background-color: v.$main_beige;
     height: 100%;
+    font-family: Noto Sans JP,-apple-system,blinkmacsystemfont,Segoe UI,Hiragino Kaku Gothic ProN,BIZ UDPGothic,meiryo,sans-serif;
     @include v.mq(w425){
         background-image: unset;
     }

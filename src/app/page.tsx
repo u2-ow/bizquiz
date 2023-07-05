@@ -7,19 +7,33 @@ import Link from "next/link";
 import Styles from "@/app/app.module.scss"
 import { useRecoilState } from 'recoil';
 import { askedQuizState } from '@/lib/atoms/askedQuizState';
-import { useEffect } from 'react';
+import { useEffect,useRef } from 'react';
 
 
 
 
 export default function Home() {
   const [askedQuestions,setAskedQuestions] = useRecoilState(askedQuizState);
+  const appHowtoRef = useRef<HTMLDivElement>(document.createElement('div'))
+
   useCreatUserData();
   useEffect(()=>{
     setAskedQuestions([]);
   },[])
   useEffect(() => {
 }, [askedQuestions]);
+
+const apperHowto =()=>{
+  const appearHowto =appHowtoRef.current;
+  appearHowto.style.display = 'block';
+}
+const disApperHowto =()=>{
+  const appearHowto =appHowtoRef.current;
+    appearHowto.style.display = 'none';
+}
+
+
+
   return (
     <>
       <div className={Styles.appMainInner}>
@@ -34,6 +48,14 @@ export default function Home() {
         </h1>
         <p className={Styles.appText}>SEOやマーケティングで使用される用語の<span className="lf">4択のクイズゲーム！</span></p>
         <Link href='/countDown' className={Styles.appStartButton}><span className={Styles.appStartButtonText}>はじめる</span></Link>
+        <button className={Styles.appShowHowto} onClick={apperHowto}>
+          あそび方をみる
+        </button>
+        <div className={Styles.appHowto} ref={appHowtoRef}>
+          <p className={Styles.appHowtoTitle}><b>遊び方</b></p>
+          <p className={Styles.appHowtoText}>SEOやマーケティングで使われる用語の説明文が問題として出題されますのでそれに対応する単語を4択から選択して答えるゲームです。</p>
+          <button className={Styles.appCloseHowto} onClick={disApperHowto}>閉じる</button>
+        </div>
       </div>
 
 

@@ -1,6 +1,7 @@
 @use  '@/styles/variables.scss' as v;
 .appMainInner{
     margin-top: 250px;
+    position: relative;
     .appName{
         font-size: 100px;
         text-shadow: var(--text-shadow);
@@ -48,6 +49,9 @@
         color: v.$main_brown;
         font-weight: bold;
         border: solid 3px v.$main_yellow;
+        @include v.mq(w425){
+            font-size: 18px;
+        }
         &:hover{
             .appStartButtonText{
                 animation: v.$text-animation;
@@ -56,7 +60,87 @@
 
 
     }
-
+    .appHowto{
+        max-width: 600px;
+        width: 600px;
+        background-color: v.$main_cream_white;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        box-shadow: 5px 5px 0px -1px rgba(121, 79, 39, 1);
+        border-radius: 10px;
+        border: solid 3px v.$main_brown;
+        padding: 52px 32px;
+        display: none;
+        @include v.mq(w640){
+            max-width: 500px;
+            width: 85%;
+            padding: 52px 16px;
+        
+        }
+    }
+    .appHowtoTitle{
+        text-align: center;
+        font-weight: 500;
+        font-size: 23px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .appHowtoText{
+        font-size: 18px;
+        line-height: 1.7;
+        @include v.mq(w640){
+            font-size: 16px;
+        
+        }
+    }
+    .appShowHowto{
+        font-size: 20px;
+        text-align: center;
+        width: fit-content;
+        margin: 16px auto auto auto;
+        background-color: v.$main_yellow;
+        border-radius: 50px;
+        width: 180px;
+        padding: 4px 0;
+        display: block;
+        text-decoration: none;
+        color: v.$main_brown;
+        font-weight: bold;
+        border: solid 3px #fff;
+        @include v.mq(w425){
+            font-size: 18px;
+        }
+        &:hover{
+            background-color: #fff;
+            color: v.$main_yellow;
+            border: solid 3px v.$main_yellow;
+        }
+    }
+    .appCloseHowto{
+        font-size: 20px;
+        text-align: center;
+        width: fit-content;
+        margin: 32px auto auto auto;
+        background-color: v.$main_yellow;
+        border-radius: 50px;
+        width: 180px;
+        padding: 4px 0;
+        display: block;
+        text-decoration: none;
+        color: v.$main_brown;
+        font-weight: bold;
+        border: solid 3px #fff;
+        @include v.mq(w425){
+            font-size: 18px;
+        }
+        &:hover{
+            background-color: #fff;
+            color: v.$main_yellow;
+            border: solid 3px v.$main_yellow;
+        }
+    }
 
 }
 
