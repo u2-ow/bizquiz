@@ -4,16 +4,20 @@
 import { useEffect, useState,useRef } from "react";
 import { useQuizCountDown } from "@/hooks/useQuizCountDown";
 import { useParams, usePathname,useRouter, useSearchParams } from 'next/navigation';
-import { askedQuizState } from "@/lib/atoms/askedQuizState";
+
 
 import Styles from '@/app/quiz/quiz.module.scss'
-import fetchSeoQuestion from "@/lib/fetchSeoQuestion";
-import fetchSeoChoice from "@/lib/fetchSeoChoice";
+
+
 import { useRecoilState } from "recoil";
-import { addQuestionsState } from "@/selectors/addAskedQuestionSelector";
 
 import { Question } from "@/types/question";
+import { quizState } from "@/lib/atoms/quizState";
 
+import fetchQuiz from "@/lib/fetchQuiz";
+import fetchChoice from "@/lib/fetchChoice";
+import { choiceState } from "@/lib/atoms/choiceState";
+import { useRecoilValue } from "recoil";
 
 
 type Choice = {
@@ -24,12 +28,30 @@ type Choice = {
 };
 
 export default function Page() {
-  const [seoQuestions,setSeoQuestions] = useState<Question[]>([])
-  const [seoChoices,setSeoChoices] = useState<Choice[]>([]);
+
+
   const [currentUrl,setCurretUrl] = useState('');
   const [apperTimer,setApperTimer] = useState(false)
-  const [askedQuestions,setAskedQuestions] = useRecoilState<Question[]>(askedQuizState);
+  
   const [currentQuestion,setCurrentQuestion] = useState(null)
+
+
+
+
+  /*選択肢用のステート*/
+  const [choices,setChoices] = useState<Choice[]>([]);
+  /*問題用のステート*/
+  const [questions,setQuestions] = useState<Question[]>([])
+  /*現在の問題のidのステート*/
+  const [currentQuizId,setCurrentQuizId] = useState<number>();
+  //現在の選択肢の配列のデータを格納するためのステート
+  const [curretChoiceArray,setCurretChoiceArray] = useState();
+  /*問題用のグローバルステート*/
+  const [globalQuiz,setGlobalquiz] = useRecoilState(quizState);
+  /*選択肢用のグローバルステート*/
+  const [globalFourChoices,setGlobalfourchoices] = useRecoilState(choiceState)
+
+
 
   /*カウントダウン用のRef*/
   const quizSemiNumberCircleRef01 = useRef(null)
@@ -47,33 +69,48 @@ export default function Page() {
  
 
 
-  /* 問題と問題に対応する選択肢を取得 */
 
-  useEffect(() => {
-   
-    const fetchData = async () => {
-      const questions = await fetchSeoQuestion();
-      setSeoQuestions(questions as Question[]);
-      if(questions && questions.length >0){
-        console.log(questions)
-        const questionId = questions[0].id;
-        const choices = await fetchSeoChoice(questionId);
-        setSeoChoices(choices as Choice[])
-        setAskedQuestions([...askedQuestions, questionId]);
-        setCurrentQuestion(questionId);      
-        checkQuesionFunc(questionId)
-      }
-      return
-    };
   
-    const checkQuesionFunc = (questionId:Question) => {
-      if (askedQuestions.includes(questionId)) {
-        fetchData();
-      }
-    };
-  
-    fetchData();
-  }, []);
+
+  /* グローバルステートの配列から1問ずつ取得するために現在の問題のpathnameを取得する*/
+  useEffect(()=>{
+    const quizId = pathname.split('/q').pop();
+    setCurrentQuizId(quizId)
+    console.log(quizId)
+
+    // console.log('カレントクイズ')
+    // console.log(currentQuizId)
+    // console.log('カレントクイズ')
+  },[currentQuizId, pathname])
+
+/* グローバルステートに格納した問題と選択肢を出力するためにステートに格納 */
+useEffect(()=>{
+  //出題用の問題を取得
+ if( Array.isArray(globalQuiz)){
+  const quesionValutes = globalQuiz.map(item => item.question);
+  setQuestions(quesionValutes)
+ }
+ //問題に対する選択肢を取得
+ if(Array.isArray(globalFourChoices) && globalFourChoices.length > 0){
+  const firstChoices = globalFourChoices[currentQuizId - 1];
+  if (firstChoices) {
+    console.log(firstChoices);
+    const aaaa =firstChoices.map(item => item);
+    setChoices(aaaa)
+    setCurretChoiceArray(aaaa)
+  } 
+ }
+
+},[currentQuizId, globalFourChoices, globalQuiz])
+
+
+
+
+
+
+
+
+
 
 /*タイマーの表示を問題の表示に合わせて表示*/
   useEffect(()=>{
@@ -193,8 +230,11 @@ export default function Page() {
 
 /* ユーザーが選択した選択肢に対しての処理(ページ遷移、スコアの減算)*/
   const judege = (e)=>{
-    const selectedText = e.target.innerHTML;
-    const selectedChoices = seoChoices.find((item) => item.choice_text === selectedText);
+    const selectedChoice = e.target.innerHTML
+    const selectedChoices = curretChoiceArray.find(item => item.choice_text === selectedChoice)
+    console.log(selectedChoices)
+
+      
     if(selectedChoices?.is_correct === true){
       if(currentUrl === '/quiz/q1'){
         const correctMark = quizCorrectMarkRef.current
@@ -408,7 +448,18 @@ useEffect(()=>{
           </div>
 
           <div className={Styles.quizInner}>
-              {
+
+              <p  className={Styles.quizQuesion}>{questions[currentQuizId - 1 ]}</p>
+              <ul className={Styles.quizChoices}>
+                {
+                  choices.map(choice =>(
+                    <li key={choice.id} className={Styles.quizChoicesItem} onClick={judege}>{choice.choice_text}</li>
+                  ))
+                }
+              </ul>
+ 
+
+              {/* {
                     seoQuestions.map((seoQuestion) => (
                       <p key={seoQuestion.id} className={Styles.quizQuesion}>
                         {seoQuestion.question}
@@ -423,7 +474,7 @@ useEffect(()=>{
                       </li>
                     ))
                 }
-              </ul>
+              </ul> */}
               
               <div className={Styles.quizCorrectMark} ref={quizCorrectMarkRef}>
                 <p className={Styles.quizCorrectMarkText}>正解</p>
