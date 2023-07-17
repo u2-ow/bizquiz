@@ -6,22 +6,17 @@ import '@/app/globals.scss'
 import Link from "next/link";
 import Styles from "@/app/app.module.scss"
 import { useRecoilState } from 'recoil';
-import { askedQuizState } from '@/lib/atoms/askedQuizState';
+
 import { useEffect,useRef } from 'react';
 
 
 
 
 export default function Home() {
-  const [askedQuestions,setAskedQuestions] = useRecoilState(askedQuizState);
+
   const appHowtoRef = useRef<HTMLDivElement>(document.createElement('div'))
 
   useCreatUserData();
-  useEffect(()=>{
-    setAskedQuestions([]);
-  },[])
-  useEffect(() => {
-}, [askedQuestions]);
 
 const apperHowto =()=>{
   const appearHowto =appHowtoRef.current;
