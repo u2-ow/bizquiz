@@ -8,6 +8,7 @@ import Styles from "@/app/app.module.scss"
 import { useRecoilState } from 'recoil';
 
 import { useEffect,useRef } from 'react';
+import { incorrectState } from '@/lib/atoms/incorrectState';
 
 
 
@@ -16,16 +17,18 @@ export default function Home() {
 
   const appHowtoRef = useRef<HTMLDivElement>(document.createElement('div'))
 
+
+
   useCreatUserData();
 
-const apperHowto =()=>{
-  const appearHowto =appHowtoRef.current;
-  appearHowto.style.display = 'block';
-}
-const disApperHowto =()=>{
-  const appearHowto =appHowtoRef.current;
-    appearHowto.style.display = 'none';
-}
+  const apperHowto =()=>{
+    const appearHowto =appHowtoRef.current;
+    appearHowto.style.display = 'block';
+  }
+  const disApperHowto =()=>{
+    const appearHowto =appHowtoRef.current;
+      appearHowto.style.display = 'none';
+  }
 
 
 
