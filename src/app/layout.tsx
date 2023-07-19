@@ -5,7 +5,8 @@ import '@/styles/reset.scss'
 import { DotGothic16 } from "@next/font/google";
 import { RecoilRoot } from "recoil";
 import Link from "next/link";
-import { usePathname,useRouter } from 'next/navigation';
+import Quit from '@/components/Quit';
+
 
 // export const metadata = {
 //   title: 'Create Next App',
@@ -17,18 +18,22 @@ export default function RootLayout({
   children: React.ReactNode
 }) 
 {
-  const pathname = usePathname();
+
   return (
     
     <html lang="jp">
-    <body>
+    <body>      
+      <RecoilRoot>
       <header>
-        <Link href="/" className="quit">{pathname === '/' ? '' : '戻る'}</Link>
+
+        <Quit/>
+
       </header>
       <main>
-      <RecoilRoot>{children}</RecoilRoot>
+{children}
       </main>
       <footer></footer>
+      </RecoilRoot>
       </body>
     </html>
   )
