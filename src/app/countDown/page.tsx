@@ -19,7 +19,6 @@ export default function Page() {
     const [globalQuiz,setGlobalquiz] = useRecoilState(quizState);
     /*選択肢用のグローバルステート*/
     const [globalFourChoices,setGlobalfourchoices] = useRecoilState(choiceState)
-
     /*問題と選択肢をグローバルステートに格納*/
     useEffect(() => {
       const fetchData = async () => {
@@ -32,7 +31,6 @@ export default function Page() {
         setGlobalquiz(questions)
       }
       fetchData();
-      console.log(globalFourChoices)
     }, []);
 
     /*ゲームが始まるまでのカウントダウン*/
