@@ -24,10 +24,39 @@
     .resultRewardLeft{
         width: 100px;
         height: 100px;
-
         position: relative;
         margin-left: auto;
         right: -95px;
+    }
+    .resultQuestions{
+        max-width: 600px;
+        width: 600px;
+        background-color: v.$main_cream_white;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        box-shadow: 5px 5px 0px -1px v.$main_pink;
+        border-radius: 10px;
+        border: solid 3px v.$main_pink;
+        padding: 52px 32px;
+        // display: none;
+        @include v.mq(w640){
+            max-width: 500px;
+            width: 85%;
+            padding: 52px 16px;
+        
+        }
+    }
+    .resultQuestionsListItem{
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        .xMark{
+            color: v.$main_blue;
+            font-size: 20px;
+        }
     }
 }
 @keyframes blinking {
