@@ -40,11 +40,13 @@
         border-radius: 10px;
         border: solid 3px v.$main_pink;
         padding: 52px 32px;
-        // display: none;
+        display: none;
         @include v.mq(w640){
             max-width: 500px;
             width: 85%;
-            padding: 52px 16px;
+            padding: 20px 16px;
+            height: 500px;
+            overflow: auto;
         
         }
     }
@@ -58,6 +60,53 @@
             font-size: 20px;
         }
     }
+    .openResult{
+        font-size: 18px;
+        text-align: center;
+        width: fit-content;
+        margin: 16px auto auto auto;
+        background-color: v.$main_pink;
+        border-radius: 50px;
+        padding: 10px 16px;
+        display: block;
+        text-decoration: none;
+        color: #fff;
+        font-weight: bold;
+        border: solid 3px #fff;
+        position: relative;
+        top: -180px;
+        @include v.mq(w425){
+            font-size: 18px;
+        }
+        &:hover{
+            background-color: #fff;
+            color: v.$main_pink;
+            border: solid 3px v.$main_pink;
+        }
+    }
+    .closeResult{
+        font-size: 18px;
+        text-align: center;
+        width: fit-content;
+        margin: 32px auto auto auto;
+        background-color: #fff;
+        border-radius: 50px;
+        padding: 5px 16px;
+        display: block;
+        text-decoration: none;
+        color: v.$main_pink;
+        font-weight: bold;
+        border: solid 3px v.$main_pink;
+        @include v.mq(w425){
+            font-size: 18px;
+        }
+        &:hover{
+            background-color: v.$main_pink;
+            color: #fff;
+            border: solid 3px v.$main_pink;
+        }
+    }
+
 }
 @keyframes blinking {
 	0% {opacity: 0;}
