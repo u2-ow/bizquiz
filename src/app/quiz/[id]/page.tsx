@@ -22,13 +22,9 @@ type Choice = {
 
 export default function Page() {
 
-
   const [currentUrl,setCurretUrl] = useState('');
   const [apperTimer,setApperTimer] = useState(false)
-  
   const [currentQuestion,setCurrentQuestion] = useState(null)
-
-
 
 
   /*選択肢用のステート*/
@@ -46,8 +42,6 @@ export default function Page() {
   /* 間違えた問題を記録するためのステート*/
   const [incorrectAnswer,setIncorrectAnswer] = useRecoilState(incorrectState)
 
-
-
   /*カウントダウン用のRef*/
   const quizSemiNumberCircleRef01 = useRef(null)
   const quizSemiNumberCircleRef02 = useRef(null)
@@ -64,7 +58,7 @@ export default function Page() {
 
   /* グローバルステートの配列から1問ずつ取得するために現在の問題のpathnameを取得する*/
   useEffect(()=>{
-    const quizId = pathname.split('/q').pop();
+    const quizId = Number(pathname.split('/q').pop());
     setCurrentQuizId(quizId)
   },[currentQuizId, pathname])
 
@@ -77,13 +71,15 @@ export default function Page() {
   }
   //問題に対する選択肢を取得
   if(Array.isArray(globalFourChoices) && globalFourChoices.length > 0){
-    const firstChoices = globalFourChoices[currentQuizId - 1];
-    if (firstChoices) {
-      console.log(firstChoices);
-      const aaaa =firstChoices.map(item => item);
-      setChoices(aaaa)
-      setCurretChoiceArray(aaaa)
-    } 
+    if(currentQuizId){
+      const firstChoices = globalFourChoices[currentQuizId - 1];
+      if (firstChoices) {
+        const choiceItem =firstChoices.map((item) => item);
+        setChoices(choiceItem)
+        setCurretChoiceArray(choiceItem)
+      } 
+    }
+
   }
 
   },[currentQuizId, globalFourChoices, globalQuiz])
@@ -215,7 +211,7 @@ export default function Page() {
   },[pathname,router,currentUrl,quizTimer])
 
   /* ユーザーが選択した選択肢に対しての処理(ページ遷移、スコアの減算)*/
-  const judege = (e)=>{
+  const judege = (e: { target: { innerHTML: any; }; })=>{
     const selectedChoice = e.target.innerHTML;
     const selectedChoices = curretChoiceArray.find(item => item.choice_text === selectedChoice);     
     if(selectedChoices?.is_correct === true){
