@@ -19,21 +19,18 @@ export default function RootLayout({
 }) 
 {
 
-  return (
-    
+  return (    
     <html lang="jp">
-    <body>      
-      <RecoilRoot>
-      <header>
-
-        <Quit/>
-
-      </header>
-      <main>
-{children}
-      </main>
-      <footer></footer>
-      </RecoilRoot>
+      <body>      
+        <RecoilRoot>
+          <header>
+            <Quit/>
+          </header>
+          <main>
+            {children}
+          </main>
+          <footer></footer>
+        </RecoilRoot>
       </body>
     </html>
   )
