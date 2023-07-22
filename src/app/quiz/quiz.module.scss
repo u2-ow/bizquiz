@@ -117,6 +117,10 @@
             top: 0;
             left: 37%;
             display: none;
+            @include v.mq(w425){
+                left: 23%;
+                top: 90px;
+            }
         }
         .quizIncorrectMark{
             position: absolute;
@@ -132,6 +136,10 @@
             top: 0;
             left: 37%;
             display: none;
+            @include v.mq(w425){
+                left: 23%;
+                top: 90px;
+            }
         }
     }
 }
