@@ -1,5 +1,5 @@
 'use client'
-import {useEffect, useState } from "react";
+import {useEffect, useState,useRef } from "react";
 import Styles from "@/app/result/result.module.scss";
 import { useResultAnimation } from "@/hooks/useResultAnimation";
 import { incorrectState } from "@/lib/atoms/incorrectState";
@@ -13,6 +13,27 @@ export default function Page() {
     const [resultScore,setResultScore] = useState<number | null>();
     const {rewardRight,rewardLeft} = useResultAnimation();
     const [incorrectAnswer,setIncorrectAnswer] = useRecoilState(incorrectState)
+    const resultRef = useRef<HTMLDivElement>(null)
+    const openResultRef = useRef<HTMLButtonElement>(null)
+    const closeResultRef =useRef<HTMLButtonElement>(null)
+    
+    
+
+    const apperResult = ()=>{
+      if(resultRef.current && openResultRef.current && closeResultRef.current){
+        resultRef.current.style.display = 'block';
+        closeResultRef.current.style.display = 'block';
+        openResultRef.current.style.display = 'none';
+      }
+    }
+    const disApperResult =()=>{
+      if(resultRef.current && openResultRef.current && closeResultRef.current){
+        resultRef.current.style.display = 'none';
+        closeResultRef.current.style.display = 'none';
+        openResultRef.current.style.display = 'block';
+      }
+    }
+
 
     useEffect(()=>{
 
@@ -22,10 +43,6 @@ export default function Page() {
           rewardRight();
           rewardLeft();
         }
-
-        console.log('あなたが間違えた問題')
-        console.log(incorrectAnswer)
-        console.log('あなたが間違えた問題')
     },[])
   return (
     
@@ -34,14 +51,15 @@ export default function Page() {
         <p className={Styles.resultScore}>{resultScore}/10</p>
         <div id="rewardRight" className={Styles.resultRewardRight} ></div>
         <div id="rewardLeft" className={Styles.resultRewardLeft} ></div>
-        <button>間違えた問題を確認する</button>
-        <div className={Styles.resultQuestions}> 
+        <button className={Styles.openResult} ref={openResultRef}  onClick={apperResult}>間違えた問題を確認する</button>
+        <div className={Styles.resultQuestions} ref={resultRef}> 
           <ul className={Styles.resultQuestionsList}>
             {incorrectAnswer.map(item =>(
               <li className={Styles.resultQuestionsListItem} key={item.id}> <FontAwesomeIcon icon={faXmark} className={Styles.xMark} />{item}</li>
             ))}
           </ul>
-          <button>閉じる</button>
+
+          <button className={Styles.closeResult} ref={closeResultRef} onClick={disApperResult}>閉じる</button>
         </div>
     </div>
   )

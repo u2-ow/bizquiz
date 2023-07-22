@@ -14,24 +14,18 @@ import { incorrectState } from '@/lib/atoms/incorrectState';
 
 
 export default function Home() {
-
-  const appHowtoRef = useRef<HTMLDivElement>(document.createElement('div'))
-
-
-
+  const appHowtoRef = useRef<HTMLDivElement>(null)
   useCreatUserData();
-
   const apperHowto =()=>{
-    const appearHowto =appHowtoRef.current;
-    appearHowto.style.display = 'block';
+    if(appHowtoRef.current){
+      appHowtoRef.current.style.display = 'block';
+    }
   }
   const disApperHowto =()=>{
-    const appearHowto =appHowtoRef.current;
-      appearHowto.style.display = 'none';
+    if(appHowtoRef.current){
+      appHowtoRef.current.style.display = 'none';
+    }
   }
-
-
-
   return (
     <>
       <div className={Styles.appMainInner}>
