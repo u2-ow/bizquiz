@@ -1,5 +1,5 @@
 'use client'
-import {useEffect, useState,useRef } from "react";
+import {useEffect, useState,useRef, JSXElementConstructor, PromiseLikeOfReactNode, ReactElement, ReactFragment, ReactPortal } from "react";
 import Styles from "@/app/result/result.module.scss";
 import { useResultAnimation } from "@/hooks/useResultAnimation";
 import { incorrectState } from "@/lib/atoms/incorrectState";
@@ -36,16 +36,14 @@ export default function Page() {
 
 
     useEffect(()=>{
-
-        const score = Number(sessionStorage.getItem('defaultScore'));
-        setResultScore(score);
-        if(score >= 8){
-          rewardRight();
-          rewardLeft();
-        }
+      const score = Number(sessionStorage.getItem('defaultScore'));
+      setResultScore(score);
+      if(score >= 8){
+        rewardRight();
+        rewardLeft();
+      }
     },[])
   return (
-    
     <div className={Styles.result}>
         <p className={Styles.resultText}>結果</p>
         <p className={Styles.resultScore}>{resultScore}/10</p>
@@ -54,7 +52,7 @@ export default function Page() {
         <button className={Styles.openResult} ref={openResultRef}  onClick={apperResult}>間違えた問題を確認する</button>
         <div className={Styles.resultQuestions} ref={resultRef}> 
           <ul className={Styles.resultQuestionsList}>
-            {incorrectAnswer.map(item =>(
+            {incorrectAnswer.map((item:any) =>(
               <li className={Styles.resultQuestionsListItem} key={item.id}> <FontAwesomeIcon icon={faXmark} className={Styles.xMark} />{item}</li>
             ))}
           </ul>
