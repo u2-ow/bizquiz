@@ -10,7 +10,6 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 
 
 
-// ⭐️とりあえず問題は出力できるようになった⭐️
 
 export default function Page() {
     const [count,setCount] = useState(3);
@@ -26,16 +25,18 @@ export default function Page() {
         //問題のidと一致する選択肢を取得できるようにここで問題のidを取得
         const questionIds = questions?.slice(0, 10).map( question => question.id );
         //問題のidを使って選択肢を取得
-        const choices = await Promise.all(questionIds.map(questionId => fetchChoice(questionId)));
-        setGlobalfourchoices(choices)
-        setGlobalquiz(questions)
+        if(questionIds){
+          const choices = await Promise.all(questionIds.map(questionId => fetchChoice(questionId)));
+          console.log(questions)
+          setGlobalfourchoices(choices as [][]);
+          setGlobalquiz(questions as [][])
+        }
       }
       fetchData();
     }, []);
 
     /*ゲームが始まるまでのカウントダウン*/
     useEffect(() => {
-
         const interval = setInterval(() => {
           setCount((prev) => prev - 1);
         }, 1000);
@@ -44,13 +45,11 @@ export default function Page() {
           setTimeout(() => {
             router.push("/quiz/q1")
           }, 500); 
-       
         }
         return () => clearInterval(interval);
     }, [count,router]);
 
-      
-
+    
     return (
       <p className={Styles.count} >{count === 0 ? "START" : count }</p>
     )
