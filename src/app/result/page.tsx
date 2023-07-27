@@ -38,6 +38,9 @@ export default function Page() {
     useEffect(()=>{
       const score = Number(sessionStorage.getItem('defaultScore'));
       setResultScore(score);
+      if(score === 10 && openResultRef.current){
+        openResultRef.current.style.display = 'none';
+      }
       if(score >= 8){
         rewardRight();
         rewardLeft();
