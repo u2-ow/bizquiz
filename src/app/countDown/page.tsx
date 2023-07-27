@@ -44,7 +44,7 @@ export default function Page() {
           clearInterval(interval);
           setTimeout(() => {
             router.push("/quiz/q1")
-          }, 500); 
+          }, 300); 
         }
         return () => clearInterval(interval);
     }, [count,router]);
