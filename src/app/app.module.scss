@@ -2,6 +2,9 @@
 .appMainInner{
     margin-top: 250px;
     position: relative;
+    @include v.mq(w425){
+        margin-top: 230px;
+    }
     .appName{
         font-size: 100px;
         text-shadow: var(--text-shadow);

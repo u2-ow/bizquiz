@@ -12,6 +12,10 @@ body{
 .mainInner{
     margin-top: 200px;
     padding: 0 16px;
+    @include v.mq(w425){
+        margin-top: 190px;
+    }
+
 }
 .quit{
     text-align: right;
