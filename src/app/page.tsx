@@ -9,6 +9,10 @@ import { useRecoilState } from 'recoil';
 
 import { useEffect,useRef } from 'react';
 import { incorrectState } from '@/lib/atoms/incorrectState';
+import { quizState } from '@/lib/atoms/quizState';
+import { choiceState } from '@/lib/atoms/choiceState';
+import fetchQuiz from '@/lib/fetchQuiz';
+import fetchChoice from '@/lib/fetchChoice';
 
 
 
@@ -16,6 +20,26 @@ import { incorrectState } from '@/lib/atoms/incorrectState';
 export default function Home() {
   const appHowtoRef = useRef<HTMLDivElement>(null)
   useCreatUserData();
+  /*問題用のグローバルステート*/
+  const [globalQuiz,setGlobalquiz] = useRecoilState(quizState);
+  /*選択肢用のグローバルステート*/
+  const [globalFourChoices,setGlobalfourchoices] = useRecoilState(choiceState)
+  /*問題と選択肢をグローバルステートに格納*/
+  useEffect(() => {
+    const fetchData = async () => {
+      const questions = await fetchQuiz();
+      //問題のidと一致する選択肢を取得できるようにここで問題のidを取得
+      const questionIds = questions?.slice(0, 10).map( question => question.id );
+      //問題のidを使って選択肢を取得
+      if(questionIds){
+        const choices = await Promise.all(questionIds.map(questionId => fetchChoice(questionId)));
+        console.log(questions)
+        setGlobalfourchoices(choices as [][]);
+        setGlobalquiz(questions as [][])
+      }
+    }
+    fetchData();
+  }, []);
   const apperHowto =()=>{
     if(appHowtoRef.current){
       appHowtoRef.current.style.display = 'block';
@@ -26,6 +50,7 @@ export default function Home() {
       appHowtoRef.current.style.display = 'none';
     }
   }
+  
   return (
     <>
       <div className={Styles.appMainInner}>
