@@ -39,7 +39,7 @@ export default function Home() {
       }
     }
     fetchData();
-  }, []);
+  }, [setGlobalfourchoices, setGlobalquiz]);
   const apperHowto =()=>{
     if(appHowtoRef.current){
       appHowtoRef.current.style.display = 'block';
