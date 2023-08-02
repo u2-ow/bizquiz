@@ -1,4 +1,18 @@
-export default function Head() {
+interface MetaPros {
+  title?:string;
+  description?:string;
+  ogImage?:string;
+  ogUrl?:string;
+  siteName?:string;
+  favicon?:string;
+  twitterCard?:string;
+  twitterSite?:string;
+  
+}
+
+export default function Head(props:MetaPros) {
+
+
     return (
       <>
         <title>bizquiz｜SEOやマーケティングで使用される用語の4択のクイズゲーム！</title>
@@ -13,6 +27,14 @@ export default function Head() {
         <meta name="msapplication-TileColor" content="#ffffff" />
         <meta name="msapplication-config" content="/favicons/browserconfig.xml" />
         <meta name="theme-color" content="#ffffff" />
+
+        <meta property="og:title" content="bizquiz"/>
+        <meta property="og:type" content="application"/>
+        <meta property="og:description" content="SEOやマーケティングで使用される用語の4択のクイズゲーム！"/>
+        <meta property="og:url" content="https://www.bizquiz.app/"/>
+        <meta property="og:site_name" content="bizquiz｜SEOやマーケティングで使用される用語の4択のクイズゲーム！"/>
+        <meta property="og:image" content="/bizquiz.jpg"/>
+
       </>
     )
   }
