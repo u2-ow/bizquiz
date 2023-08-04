@@ -1,15 +1,15 @@
 @use  '@/styles/variables.scss' as v;
 .appMainInner{
-    margin-top: 250px;
+    padding-top: 20%;
     position: relative;
     @include v.mq(w1024){
-        margin-top: 470px;
+        padding-top: 25%;
     }
-    @include v.mq(w1023){
-        margin-top: 250px;
+    @include v.mq(w640){
+        padding-top: 40%;
     }
     @include v.mq(w425){
-        margin-top: 230px;
+        padding-top: 55%;
     }
     .appName{
         font-size: 100px;
