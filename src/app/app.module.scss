@@ -2,6 +2,12 @@
 .appMainInner{
     margin-top: 250px;
     position: relative;
+    @include v.mq(w1024){
+        margin-top: 470px;
+    }
+    @include v.mq(w1023){
+        margin-top: 250px;
+    }
     @include v.mq(w425){
         margin-top: 230px;
     }
