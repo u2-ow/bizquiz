@@ -4,7 +4,7 @@ body{
     background-color: v.$main_beige;
     height: 100%;
     font-family: Noto Sans JP,-apple-system,blinkmacsystemfont,Segoe UI,Hiragino Kaku Gothic ProN,BIZ UDPGothic,meiryo,sans-serif;
-    @include v.mq(w425){
+    @include v.mq(w640){
         background-image: unset;
     }
 }
@@ -15,6 +15,7 @@ body{
     @include v.mq(w425){
         padding-top: 190px;
     }
+
  
 
 }

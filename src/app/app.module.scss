@@ -11,6 +11,9 @@
     @include v.mq(w425){
         padding-top: 55%;
     }
+    @include v.mq(w320){
+        padding-top: 27%;
+    }
     .appName{
         font-size: 100px;
         text-shadow: var(--text-shadow);
