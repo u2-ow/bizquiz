@@ -1,1 +1,1 @@
-COMING SOON!
+https://www.bizquiz.app/
