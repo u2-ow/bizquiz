@@ -4,12 +4,15 @@
     color: v.$main_brown;
     font-size: 100px;
     position: relative;
-    top:250px;
+    top: 300px;
     text-shadow: 1px 1px 0 #fff, -1px -1px 0 #fff,
     -1px 1px 0 #fff, 1px -1px 0 #fff,
     0px 1px 0 #fff,  0-1px 0 #fff,
     -1px 0 0 #fff, 1px 0 0 #fff;;
     text-align: center;
+    @include v.mq(w1280){
+        top:250px;
+    }
     @include v.mq(w425){
         font-size: 60px;
     }
