@@ -10,7 +10,7 @@ body{
 }
 
 .mainInner{
-    margin-top: 250px;
+    margin-top: 270px;
     @include v.mq(w1280){
         margin-top: 200px;
     }
