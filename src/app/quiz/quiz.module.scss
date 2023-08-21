@@ -97,6 +97,9 @@
                 box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
                 text-align: center;
                 padding: 10px 0;
+                @include v.mq(w768){
+                    width: 340px;
+                }
                 &:hover{
                     background-color: v.$main_beige;
                     cursor: pointer;

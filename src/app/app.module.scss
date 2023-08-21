@@ -5,6 +5,9 @@
     @include v.mq(w1024){
         padding-top: 25%;
     }
+    @include v.mq(w768){
+        padding-top: 30%;
+    }
     @include v.mq(w640){
         padding-top: 40%;
     }
