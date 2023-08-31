@@ -28,7 +28,12 @@ export default function Page() {
 
     
     return (
-      <p className={Styles.count} >{count === 0 ? "START" : count }</p>
+      <>
+      <main className={Styles.countMain}>
+        <p className={Styles.count} >{count === 0 ? "START" : count }</p>
+      </main>
+
+      </>
     )
 }
 

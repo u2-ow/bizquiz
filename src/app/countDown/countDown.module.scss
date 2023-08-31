@@ -1,20 +1,24 @@
 @use  '@/styles/variables.scss' as v;
-
-.count{
-    color: v.$main_brown;
-    font-size: 100px;
+.countMain{
     position: relative;
-    top: 230px;
-    text-shadow: 1px 1px 0 #fff, -1px -1px 0 #fff,
-    -1px 1px 0 #fff, 1px -1px 0 #fff,
-    0px 1px 0 #fff,  0-1px 0 #fff,
-    -1px 0 0 #fff, 1px 0 0 #fff;;
-    text-align: center;
-    @include v.mq(w1280){
-        top:250px;
+    height:100vh;
+    .count{
+        color: v.$main_brown;
+        font-size: 100px;
+        text-shadow: 1px 1px 0 #fff, -1px -1px 0 #fff,
+        -1px 1px 0 #fff, 1px -1px 0 #fff,
+        0px 1px 0 #fff,  0-1px 0 #fff,
+        -1px 0 0 #fff, 1px 0 0 #fff;;
+        text-align: center;
+        @include v.mq(w425){
+            font-size: 60px;
+        }
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -40%);
+        -webkit-transform: translate(-50%, -40%);
+        -ms-transform: translate(-50%, -40%);
+        
     }
-    @include v.mq(w425){
-        font-size: 60px;
-    }
-    
 }
